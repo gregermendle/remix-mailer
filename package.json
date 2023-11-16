@@ -1,0 +1,60 @@
+{
+  "name": "remix-mailer",
+  "version": "0.0.0",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint --ext .ts,.tsx src/",
+    "test": "jest --config=config/jest.config.ts --passWithNoTests",
+    "format": "prettier --write \"src/index.tsx\" \"test/index.test.ts\" \"config/**/*.ts\" \".eslintrc.js\"",
+    "coverage": "npm run test -- --coverage"
+  },
+  "keywords": [
+    "remix",
+    "remix-mailer",
+    "email",
+    "templating"
+  ],
+  "license": "MIT",
+  "files": [
+    "build",
+    "package.json",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "@react-email/components": "^0.0.11",
+    "@remix-run/server-runtime": "^1.0.0 || ^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.0",
+    "@react-email/components": "^0.0.11",
+    "@remix-run/node": "^2.0.1",
+    "@remix-run/react": "^2.0.1",
+    "@remix-run/server-runtime": "^2.0.1",
+    "@types/debug": "^4.1.9",
+    "@types/jest": "^29.5.5",
+    "@types/react": "^18.2.37",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "babel-jest": "^29.7.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jest": "^27.4.2",
+    "eslint-plugin-jest-dom": "^5.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-unicorn": "^48.0.1",
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
+    "prettier": "^3.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
