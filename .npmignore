@@ -7,3 +7,6 @@
 .npmignore
 .npmrc
 tsconfig.json
+*.tgz
+tailwind.config.js
+components.json

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { renderAsync } from "@react-email/components";
-import { useLoaderData, useSearchParams } from "@remix-run/react";
+import { Link, useLoaderData, useSearchParams } from "@remix-run/react";
+import { cn } from "./lib/utils.js";
 
 type EmailComponent<P = object> = {
   (props: P): JSX.Element;
@@ -36,81 +37,17 @@ export const usePreviews = () => {
   return previews;
 };
 
-const PreviewerNav = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...rest }, ref) => (
-  <div {...rest} ref={ref} className={cn("px-4 py-4", className)} />
-));
-
-const PreviewerNavList = React.forwardRef<
-  HTMLUListElement,
-  React.HTMLAttributes<HTMLUListElement>
->(({ className, ...rest }, ref) => (
-  <ul
-    {...rest}
-    ref={ref}
-    className={cn(
-      "ml-2 border-l border-dotted border-l-gray-700 py-1 pl-4",
-      className,
-    )}
-  />
-));
-
-const PreviewerNavItem = React.forwardRef<
-  HTMLLIElement,
-  React.HTMLAttributes<HTMLLIElement>
->(({ className, children, ...rest }, ref) => {
-  return (
-    <li
-      {...rest}
-      ref={ref}
-      className={cn("flex items-center gap-2 py-1 text-sm", className)}
-    >
-      <svg
-        width="15"
-        height="15"
-        viewBox="0 0 15 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M7.1465 1.48959C7.34176 1.29432 7.65835 1.29432 7.85361 1.48959L13.5105 7.14644C13.7057 7.3417 13.7057 7.65829 13.5105 7.85355L7.85361 13.5104C7.65835 13.7057 7.34176 13.7057 7.1465 13.5104L1.48965 7.85355C1.29439 7.65829 1.29439 7.3417 1.48965 7.14644L7.1465 1.48959ZM7.50005 2.55025L2.55031 7.49999L7.50005 12.4497L12.4498 7.49999L7.50005 2.55025Z"
-          fill="currentColor"
-          fillRule="evenodd"
-          clipRule="evenodd"
-        />
-      </svg>
-      {children}
-    </li>
-  );
-});
-
-const PreviewerViewport = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...rest }, ref) => (
-  <div {...rest} ref={ref} className={cn("", className)} />
-));
-
-const Previewer = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...rest }, ref) => (
-  <div
-    {...rest}
-    ref={ref}
-    className={cn("grid grid-cols-[240px,1fr] grid-rows-1", className)}
-  />
-));
-
-export default function PreviewBrowser() {
+export default function PreviewBrowser({
+  className,
+}: React.HTMLAttributes<HTMLDivElement>) {
   const [searchParams] = useSearchParams();
   const { previews, selected } = usePreviews();
 
   return (
-    <Previewer>
-      <PreviewerNav>
+    <div
+      className={cn("bg-background text-foreground font-sans dark", className)}
+    >
+      <div className="px-4 py-4">
         <h1 className="pb-2 font-semibold">Remix Mailer</h1>
         <h2 className="flex items-center gap-2 pb-1 text-sm font-semibold text-gray-400">
           <svg
@@ -129,21 +66,35 @@ export default function PreviewBrowser() {
           </svg>
           Previews
         </h2>
-        <PreviewerNavList>
+        <ul className="ml-2 border-l border-dotted border-l-gray-700 py-1 pl-4">
           {previews.map((title) => (
-            <PreviewerNavItem
+            <li
               key={title}
               className={cn(
-                "flex items-center gap-2 text-gray-400",
+                "flex items-center gap-2 text-gray-400 py-1 text-sm",
                 searchParams.get("preview") === title && "text-white",
               )}
             >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.1465 1.48959C7.34176 1.29432 7.65835 1.29432 7.85361 1.48959L13.5105 7.14644C13.7057 7.3417 13.7057 7.65829 13.5105 7.85355L7.85361 13.5104C7.65835 13.7057 7.34176 13.7057 7.1465 13.5104L1.48965 7.85355C1.29439 7.65829 1.29439 7.3417 1.48965 7.14644L7.1465 1.48959ZM7.50005 2.55025L2.55031 7.49999L7.50005 12.4497L12.4498 7.49999L7.50005 2.55025Z"
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                />
+              </svg>
               <Link to={`?preview=${encodeURIComponent(title)}`}>{title}</Link>
-            </PreviewerNavItem>
+            </li>
           ))}
-        </PreviewerNavList>
-      </PreviewerNav>
-      <PreviewerViewport>
+        </ul>
+      </div>
+      <div className="grid grid-cols-[240px,1fr] grid-rows-1">
         {selected && (
           <iframe
             srcDoc={selected.rendered}
@@ -151,7 +102,7 @@ export default function PreviewBrowser() {
             title={`${selected.title} preview`}
           />
         )}
-      </PreviewerViewport>
-    </Previewer>
+      </div>
+    </div>
   );
 }
