@@ -54,7 +54,7 @@ export const LinearLoginCodeEmail = ({
 );
 
 LinearLoginCodeEmail.PreviewProps = {
-  validationCode: "tt226-5398x",
+  validationCode: "x12345678x",
 } as LinearLoginCodeEmailProps;
 
 export default LinearLoginCodeEmail;
