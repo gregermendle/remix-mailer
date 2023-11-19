@@ -4,8 +4,9 @@ import {
   type LinksFunction,
   type LoaderFunctionArgs,
 } from "@remix-run/node";
-import PreviewBrowser, { loadPreview } from "remix-mailer";
-import remixMailerStylesheet from "remix-mailer/index.css";
+import { loadPreview } from "remix-mailer";
+import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
+import remixMailerStylesheet from "remix-mailer/ui/index.css";
 import LinearLoginCodeEmail from "~/emails/login-code";
 import LinearLoginCodeEmail2 from "~/emails/login-code-2";
 

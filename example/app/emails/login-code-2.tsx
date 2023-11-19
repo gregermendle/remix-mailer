@@ -18,9 +18,7 @@ interface LinearLoginCodeEmailProps {
   code?: string;
 }
 
-export const LinearLoginCodeEmail = ({
-  code,
-}: LinearLoginCodeEmailProps) => (
+export const LinearLoginCodeEmail = ({ code }: LinearLoginCodeEmailProps) => (
   <Html>
     <Head />
     <Preview>Your login code for Linear 2</Preview>
@@ -54,8 +52,8 @@ export const LinearLoginCodeEmail = ({
 );
 
 LinearLoginCodeEmail.PreviewProps = {
-  code: "x12345678x"
-} as LinearLoginCodeEmailProps
+  code: "x12345678x",
+} as LinearLoginCodeEmailProps;
 
 export default LinearLoginCodeEmail;
 
