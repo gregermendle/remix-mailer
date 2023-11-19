@@ -7,13 +7,24 @@ const RM_DATA_KEY = "__rmPreviews";
 export async function loadPreview<C extends React.ComponentType>(
   request: Request,
   p: Record<string, C>,
-  options: {
-    renderer: (Component: C) => Promise<string> | string;
-  } = {
-    renderer: (Component: React.ComponentType) =>
+  {
+    allowedEnvs = ["development", "test"],
+    renderer = (Component: React.ComponentType) =>
       renderToStaticMarkup(<Component />),
+  }: {
+    allowedEnvs?: string[];
+    renderer?: (Component: C) => Promise<string> | string;
   },
 ) {
+  if (
+    typeof process.env.NODE_ENV !== "string" ||
+    !allowedEnvs.includes(process.env.NODE_ENV)
+  ) {
+    throw new Response("You do not have access to this resource.", {
+      status: 403,
+    });
+  }
+
   const url = new URL(request.url);
   const preview = url.searchParams.get("preview");
   const Component =
@@ -21,7 +32,7 @@ export async function loadPreview<C extends React.ComponentType>(
   const selected = Component
     ? {
         title: preview,
-        rendered: await options.renderer(Component),
+        rendered: await renderer(Component),
       }
     : null;
 

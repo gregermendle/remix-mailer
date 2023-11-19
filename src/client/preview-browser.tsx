@@ -6,11 +6,12 @@ import {
   ComponentPlaceholderIcon,
   HamburgerMenuIcon,
 } from "@radix-ui/react-icons";
-import { Logo } from "../../components/ui/logo.js";
-import { ScrollArea } from "../../components/ui/scroll-area.js";
-import { usePreviews } from "../../index.js";
-import { Tabs, TabsList, TabsTrigger } from "../../components/ui/tabs.js";
-import { cn } from "../../lib/utils.js";
+import { Logo } from "./logo.js";
+import { ScrollArea } from "./scroll-area.js";
+import { usePreviews } from "../server/index.js";
+import { Tabs, TabsList, TabsTrigger } from "./tabs.js";
+import { cn } from "../lib/utils.js";
+import { TabsContent } from "@radix-ui/react-tabs";
 
 const PreviewBrowser = React.forwardRef<
   HTMLDivElement,
@@ -80,15 +81,22 @@ const PreviewBrowser = React.forwardRef<
         </Tabs>
       </div>
       {selected ? (
-        <iframe
-          srcDoc={selected.rendered}
-          className={cn(
-            "h-full w-full",
-            view === "mobile" &&
-              "max-w-[375px] max-h-[667px] rounded-2xl mx-auto mt-12 border",
-          )}
-          title={`${selected.title} preview`}
-        />
+        <Tabs value={view}>
+          <TabsContent value="desktop" className="w-full h-full">
+            <iframe
+              srcDoc={selected.rendered}
+              className="h-full w-full"
+              title={`${selected.title} preview`}
+            />
+          </TabsContent>
+          <TabsContent value="mobile" className="w-full h-full">
+            <iframe
+              srcDoc={selected.rendered}
+              className="h-full w-full max-w-[375px] max-h-[667px] rounded-2xl mx-auto mt-12 border"
+              title={`${selected.title} preview`}
+            />
+          </TabsContent>
+        </Tabs>
       ) : (
         <div className="text-muted-foreground flex items-center justify-center">
           <p>No preview selected.</p>
@@ -139,7 +147,7 @@ const PreviewBrowserNavItem = React.forwardRef<
       (e) => {
         onClick?.(value, e);
       },
-      [value],
+      [value, onClick],
     );
 
   return (

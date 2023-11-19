@@ -6,33 +6,33 @@ import {
   Hr,
   Html,
   Img,
+  Link,
   Preview,
   Text,
 } from "@react-email/components";
 
 import LinearLogo from "./assets/logo.png";
 
-interface LoginCodeProps {
-  code?: string;
+interface ResetPasswordProps {
+  resetLink?: string;
 }
 
-export const LoginCode = ({ code }: LoginCodeProps) => (
+export const ResetPassword = ({ resetLink }: ResetPasswordProps) => (
   <Html>
     <Head />
     <Preview>Your login code</Preview>
     <Body style={mainStyle}>
       <Container>
         <Img src={LinearLogo} width="33" height="25" alt="Remix Mailer" />
-        <Heading style={headingStyle}>Your verification code.</Heading>
-        <code style={codeStyle}>{code}</code>
+        <Heading style={headingStyle}>Lets reset your password.</Heading>
+        <Link href={resetLink}>Reset Password</Link>
         <Text style={paragraphStyle}>
-          Your verification code will expire in 5 minutes. Head back to the
-          login page and enter the verification code shown above. Please do not
-          share this code with anyone.
+          This password reset link will be valid for 5 minutes. If this link does not work, copy and paste the following link into your browser&rsquo;s address bar.
         </Text>
+        <code style={codeStyle}>{resetLink}</code>
         <Hr style={hrStyle} />
         <Text style={footerStyle}>
-          If you didn&#39;t request this verification code, please ignore this
+          If you didn&#39;t request this password reset, please ignore this
           message.
         </Text>
       </Container>
@@ -40,11 +40,11 @@ export const LoginCode = ({ code }: LoginCodeProps) => (
   </Html>
 );
 
-LoginCode.PreviewProps = {
-  code: "3937727",
-} as LoginCodeProps;
+ResetPassword.PreviewProps = {
+  resetLink: "https://github.com/gregermendle/remix-mailer",
+} as ResetPasswordProps;
 
-export default LoginCode;
+export default ResetPassword;
 
 const mainStyle = {
   padding: "20px 14px",
@@ -58,16 +58,16 @@ const headingStyle = {
   fontSize: "22px",
 };
 
-const codeStyle = {
-  fontFamily: "monospace",
-  fontSize: "16px",
-  width: "100%",
-  letterSpacing: 16,
-};
-
 const paragraphStyle = {
   paddingTop: "14px",
 };
+
+const codeStyle = {
+  fontSize: "12px",
+  backgroundColor: "#ebebeb",
+  padding: "4px 2px",
+  borderRadius: "4px"
+}
 
 const hrStyle = {
   marginTop: "80px",
