@@ -1,7 +1,8 @@
-/node_modules
-/build
-/coverage
+node_modules
+coverage
+dist
 
 *.log
 .DS_Store
 *.tgz
+.turbo

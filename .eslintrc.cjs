@@ -1,22 +1,46 @@
-/* eslint-disable unicorn/prefer-module */
+/**
+ * @type {import('eslint').Linter.Config}
+ */
 module.exports = {
-  root: true,
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "unicorn", "jest", "prettier"],
-  extends: [
-    "plugin:unicorn/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+  ignorePatterns: [
+    "node_modules/",
+    ".cache/",
+    "browser/",
+    "dist/",
+    "example/dist"
   ],
+  extends: ["react-app"],
+  plugins: ["prettier", "no-only-tests"],
   rules: {
-    "prefer-const": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "no-unused-vars": "off",
-    "no-var": "off",
-    "unicorn/no-null": "off",
-    "unicorn/prefer-node-protocol": "off",
-    "unicorn/filename-case": "off",
-    "unicorn/prevent-abbreviations": "off",
+    "import/no-anonymous-default-export": "off",
+    "import/order": [
+      "warn",
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "unknown",
+          "parent",
+          "sibling",
+          "index",
+        ],
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+        "newlines-between": "never",
+      },
+    ],
+    "prettier/prettier": "error",
+    "no-only-tests/no-only-tests": "error",
   },
+  overrides: [
+    {
+      files: ["./cypress/**"],
+      rules: {
+        "@typescript-eslint/no-unused-expressions": "off",
+      },
+    },
+  ],
 };
