@@ -10,7 +10,7 @@ import {
   Preview,
   Text,
 } from "@react-email/components";
-import LinearLogo from "./assets/logo.png";
+import LinearLogo from "~/emails/assets/logo.png";
 
 interface ResetPasswordProps {
   resetLink?: string;

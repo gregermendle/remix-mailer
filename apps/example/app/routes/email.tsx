@@ -24,6 +24,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       resetPassword: ResetPassword,
     },
     {
+      // Dont do this in a typical app unless you want everyone to see your previews
+      allowedEnvs: ["production", "development", "test"],
       renderer: async (Component) =>
         renderAsync(<Component {...Component?.PreviewProps} />),
     },
