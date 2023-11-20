@@ -9,7 +9,6 @@ import {
   Preview,
   Text,
 } from "@react-email/components";
-import LinearLogo from "~/emails/assets/logo.png";
 
 interface LoginCodeProps {
   code?: string;
@@ -21,7 +20,7 @@ export const LoginCode = ({ code }: LoginCodeProps) => (
     <Preview>Your login code</Preview>
     <Body style={mainStyle}>
       <Container>
-        <Img src={LinearLogo} width="33" height="25" alt="Remix Mailer" />
+        <Img src="/assets/logo.png" width="33" height="25" alt="Remix Mailer" />
         <Heading style={headingStyle}>Your verification code.</Heading>
         <code style={codeStyle}>{code}</code>
         <Text style={paragraphStyle}>

@@ -10,7 +10,6 @@ import {
   Preview,
   Text,
 } from "@react-email/components";
-import LinearLogo from "~/emails/assets/logo.png";
 
 interface ResetPasswordProps {
   resetLink?: string;
@@ -22,7 +21,7 @@ export const ResetPassword = ({ resetLink }: ResetPasswordProps) => (
     <Preview>Your login code</Preview>
     <Body style={mainStyle}>
       <Container>
-        <Img src={LinearLogo} width="33" height="25" alt="Remix Mailer" />
+        <Img src="/assets/logo.png" width="33" height="25" alt="Remix Mailer" />
         <Heading style={headingStyle}>Lets reset your password.</Heading>
         <Link href={resetLink}>Reset Password</Link>
         <Text style={paragraphStyle}>
