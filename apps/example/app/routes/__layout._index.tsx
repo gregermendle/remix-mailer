@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { json } from "@remix-run/node";
 import { LoaderFunctionArgs } from "react-router";
-import * as shiki from "shiki";
+import * as shiki from "~/shiki.server";
 import { Link, useLoaderData } from "@remix-run/react";
 import { delay, fromEvent, map, mergeMap, tap } from "rxjs";
 import { cn } from "@/lib/utils";
