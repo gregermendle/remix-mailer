@@ -1,27 +1,26 @@
 {
-    "$schema": "https://turbo.build/schema.json",
-    "pipeline": {
-        "build": {
-          "dependsOn": ["^build"],
-          "outputs": ["build/**"]
-        },
-        "lint": {
-          "outputs": []
-        },
-        "format": {
-          "outputs": []
-        },
-        "typecheck": {
-          "dependsOn": ["^build"],
-          "outputs": []
-        },
-        "test": {
-          "dependsOn": ["^build"],
-          "outputs": []
-        },
-        "dev": {
-          "dependsOn": ["^build"],
-          "cache": false
-        }
-      }
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "format": {
+      "outputs": []
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false
+    }
+  }
 }

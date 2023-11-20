@@ -2,7 +2,6 @@
 module.exports = {
   cacheDirectory: "./node_modules/.cache/remix",
   ignoredRouteFiles: ["**/.*", "**/*.test.{ts,tsx}"],
-  watchPaths: ["../build/**/*"],
+  watchPaths: ["@/**/*"],
   serverModuleFormat: "cjs",
-  serverDependenciesToBundle: "all",
 };

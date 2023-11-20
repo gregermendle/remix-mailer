@@ -1,8 +1,9 @@
 node_modules
 coverage
-dist
+build
 
 *.log
 .DS_Store
 *.tgz
 .turbo
+.vscode

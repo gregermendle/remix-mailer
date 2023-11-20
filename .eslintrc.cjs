@@ -6,8 +6,8 @@ module.exports = {
     "node_modules/",
     ".cache/",
     "browser/",
-    "dist/",
-    "example/dist"
+    "build/",
+    "example/build",
   ],
   extends: ["react-app"],
   plugins: ["prettier", "no-only-tests"],
