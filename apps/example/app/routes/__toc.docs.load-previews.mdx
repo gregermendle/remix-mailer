@@ -1,0 +1,88 @@
+---
+meta:
+  - title: loadPreviews
+---
+
+import * as shiki from "~/shiki.server";
+import { Shikiize } from "~/shiki";
+
+export const loader = async () => {
+  return shiki.shikiize({
+    types: {
+      lang: "tsx",
+      code: `
+type LoadPreviewsFunction = <Preview extends React.ReactComponentType>(
+  request: Request,
+  previews: Record<string, Preview>,
+  options: LoadPreviewsOptions<Preview>
+): LoadPreviewsResult
+
+type LoadPreviewsOptions<Preview extends React.ReactComponentType> = {
+allowedEnvs?: string[];
+renderer?(Component: Preview): Promise<string> | string;
+}
+
+type LoadPreviewsResult = {
+[RM_DATA_KEY]: {
+selected: {
+title: string,
+rendered: string
+} | null,
+previews: Array<string>
+}
+}
+`    },
+    production: {
+      lang: "tsx",
+      code:`
+loadPreviews(
+request,
+previews,
+{
+allowedEnvs: ["test", "development", "production"]
+}
+)
+`    },
+    basic: {
+      lang: "tsx",
+      code:`
+loadPreviews(
+request,
+{
+loginCode: LoginCodeEmailTemplate
+},
+{
+renderer: (Component) =>
+renderAsync(<Component {...Component.PreviewProps} />)
+}
+)
+`
+}
+});
+};
+
+# loadPreviews
+
+A simple utility for aggregating and rendering email templates.
+
+## Arguments
+
+Accepts three arguments
+
+- The request object from your loader
+- An object of previews _(nesting previews is not currently supported)_
+- Options object allowing you to specify your renderer and a list of allowed environments
+
+<Shikiize id="types" />
+
+## Usage
+
+A basic example of using `loadPreviews` with the async renderer from `@react-email/components`. The default renderer utilizes the `renderToStaticMarkup` function from `react-dom/server`.
+
+<Shikiize id="basic" />
+
+`allowedEnvs` gives you the option to specify which environments you would like to allow previews in. The default allowed environments are `test` and `development`.
+
+You can allow previews in `production`, `test`, and `development` with the following.
+
+<Shikiize id="production" />

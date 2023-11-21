@@ -1,28 +1,30 @@
-import {
-  ComponentInstanceIcon,
-  CopyIcon,
-  GitHubLogoIcon,
-} from "@radix-ui/react-icons";
+import { ComponentInstanceIcon, CopyIcon } from "@radix-ui/react-icons";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/ui/logo";
-import { json } from "@remix-run/node";
 import { LoaderFunctionArgs } from "react-router";
 import * as shiki from "~/shiki.server";
-import { Link, useLoaderData } from "@remix-run/react";
-import { delay, fromEvent, map, mergeMap, tap } from "rxjs";
+import { delay, fromEvent, mergeMap, tap } from "rxjs";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Shikiize } from "~/shiki";
 
-const previewCode = `
-import { renderAsync } from "@react-email/components";
+export const code = `
 import {
   json,
   type LinksFunction,
   type LoaderFunctionArgs,
 } from "@remix-run/node";
+
+// This example uses @react-email
+import { renderAsync } from "@react-email/components";
+
+
+// Import remix-mailer styles and components
 import { loadPreview, PreviewBrowser } from "remix-mailer";
 import remixMailerStylesheet from "remix-mailer/index.css";
+
+
+// Import your email template components
 import { LoginCode } from "~/emails/login-code";
 import { ResetPassword } from "~/emails/reset-password";
 
@@ -41,6 +43,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       resetPassword: ResetPassword,
     },
     {
+      // Anything that renders to a string of HTML can be used here
       renderer: async (Component) =>
         renderAsync(<Component {...Component?.PreviewProps} />),
     },
@@ -55,14 +58,10 @@ export default PreviewBrowser;
 `;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const highlighter = await shiki.getHighlighter({
-    langs: ["tsx"],
-    theme: "css-variables",
-  });
-
-  return json({
-    codeBlocks: {
-      preview: highlighter.codeToHtml(previewCode.trim(), { lang: "tsx" }),
+  return shiki.shikiize({
+    example: {
+      lang: "tsx",
+      code,
     },
   });
 };
@@ -71,7 +70,6 @@ export default function _Index() {
   const copyRef = useRef<HTMLButtonElement>(null);
   const [copied, setCopied] = useState(false);
   const [tab, setTab] = useState("previewer");
-  const { codeBlocks } = useLoaderData<typeof loader>();
 
   useEffect(() => {
     if (!copyRef.current) return;
@@ -98,7 +96,7 @@ export default function _Index() {
   }, []);
 
   return (
-    <div className="max-w-4xl w-full mx-auto px-6 lg:px-0 pt-16">
+    <div className="max-w-4xl w-full mx-auto px-6 lg:px-0 pt-16 mb-12">
       <Button
         ref={copyRef}
         aria-label="copy npm install command"
@@ -171,8 +169,8 @@ export default function _Index() {
               <code className="absolute right-4 top-2.5 text-xs text-muted-foreground">
                 tsx
               </code>
-              <div
-                dangerouslySetInnerHTML={{ __html: codeBlocks.preview }}
+              <Shikiize
+                id="example"
                 className="px-4 py-3 rounded-lg overflow-y-hidden overflow-x-auto text-xs bg-muted/50 shadow-md"
               />
             </div>

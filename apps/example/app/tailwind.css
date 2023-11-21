@@ -38,8 +38,8 @@
     --shiki-color-text: hsl(var(--foreground));
     --shiki-color-background: transparent;
     --shiki-token-constant: #ffad33;
-    --shiki-token-string: #770000;
-    --shiki-token-comment: #880000;
+    --shiki-token-string: #e7eeff;
+    --shiki-token-comment: hsl(var(--muted-foreground));
     --shiki-token-keyword: #a4caab;
     --shiki-token-parameter: #aa0000;
     --shiki-token-function: #8aafff;
@@ -83,7 +83,42 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .mdx a {
+    @apply underline;
+  }
+  .mdx h1 {
+    @apply text-3xl font-semibold pb-1 tracking-wide leading-none font-serif;
+  }
+  .mdx h2 {
+    @apply text-2xl font-semibold pb-1 pt-8 tracking-wide leading-none font-serif;
+  }
+  .mdx p {
+    @apply py-4 text-sm;
+  }
+  .mdx pre.shiki {
+    @apply text-xs px-3 py-2;
+  }
+  .mdx ul {
+    @apply pl-6 list-disc text-muted-foreground text-sm pb-4;
+  }
+  .mdx li {
+    @apply pl-2 py-1;
+  }
+  .mdx p > code {
+    @apply text-[#8cb093] bg-[#a4caab]/10;
+  }
+  .mdx blockquote {
+    @apply border-l-2 pl-4 mb-6 mt-2 bg-muted/20 py-2 rounded-md;
+  }
+  .mdx blockquote > h1 {
+    @apply text-lg pb-2 pt-0;
+  }
+  .mdx blockquote > p {
+    @apply p-0;
   }
 }
