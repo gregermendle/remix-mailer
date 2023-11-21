@@ -1,6 +1,7 @@
 import { json } from "@remix-run/node";
 import { Lang } from "shiki";
 import "shiki/languages/tsx.tmLanguage.json";
+import "shiki/languages/shellscript.tmLanguage.json";
 import "shiki/themes/css-variables.json";
 import shiki from "shiki";
 export * from "shiki";
@@ -13,6 +14,7 @@ export interface Block {
 export const shikiize = async (blocksToRender: Record<string, Block>) => {
   const highlighter = await shiki.getHighlighter({
     theme: "css-variables",
+    langs: ["shellscript", "tsx"],
   });
 
   const blocks = Object.entries(blocksToRender).map(([key, block]) => [

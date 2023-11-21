@@ -10,10 +10,10 @@ import { code as previewCode } from "~/routes/__layout._index";
 export const loader = async () => {
   return shiki.shikiize({
     install: {
-      lang: "bash",
+      lang: "shellscript",
       code: `
-# install remix-mailer and nodemailer transport
-npm i remix-mailer nodemailer
+# install remix-mailer core library
+npm i remix-mailer
 `,
     },
     basic: {
@@ -27,10 +27,10 @@ npm i remix-mailer nodemailer
 
 `remix-mailer` contains a set of components and utilities that can be used to preview email templates. _(technically they dont even need to be emails, it could honestly be anything.)_
 
-<Shikiize id="install" />
+    <Shikiize id="install" />
 
 ## Basic Usage
 
 The fastest way to get started with `remix-mailer` is to use the built-in `<PreviewBrowser />` component and `loadPreviews` utility.
 
-<Shikiize id="basic" />
+    <Shikiize id="basic" />
