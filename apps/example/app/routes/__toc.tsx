@@ -82,7 +82,7 @@ export default function __Layout__Toc() {
         <div className="hidden sm:block border-r">
           <div className="sticky top-[65px] p-6">{nav}</div>
         </div>
-        <div className="px-6 py-6 mdx max-w-2xl">
+        <div className="px-10 py-6 mdx max-w-2xl">
           <Outlet />
         </div>
       </div>

@@ -14,24 +14,24 @@ export const loader = async () => {
 type LoadPreviewsFunction = <Preview extends React.ReactComponentType>(
   request: Request,
   previews: Record<string, Preview>,
-  options: LoadPreviewsOptions<Preview>
-): LoadPreviewsResult
+  options: LoadPreviewsOptions<Preview>,
+) => LoadPreviewsResult;
 
 type LoadPreviewsOptions<Preview extends React.ReactComponentType> = {
 allowedEnvs?: string[];
 renderer?(Component: Preview): Promise<string> | string;
-}
+};
 
 type LoadPreviewsResult = {
 [RM_DATA_KEY]: {
 selected: {
-title: string,
-rendered: string
-} | null,
-previews: Array<string>
-}
-}
-`    },
+title: string;
+rendered: string;
+} | null;
+previews: Array<string>;
+};
+};
+`   },
     production: {
       lang: "tsx",
       code:`
@@ -42,7 +42,7 @@ previews,
 allowedEnvs: ["test", "development", "production"]
 }
 )
-`    },
+`   },
     basic: {
       lang: "tsx",
       code:`

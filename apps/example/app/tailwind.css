@@ -98,13 +98,16 @@
     @apply text-2xl font-semibold pb-1 pt-8 tracking-wide leading-none font-serif;
   }
   .mdx p {
-    @apply py-4 text-sm;
+    @apply py-4 text-sm leading-loose;
   }
   .mdx pre.shiki {
     @apply text-xs px-3 py-2;
   }
   .mdx ul {
-    @apply pl-6 list-disc text-muted-foreground text-sm pb-4;
+    @apply pl-6 list-disc text-muted-foreground text-sm py-4;
+  }
+  .mdx li > p {
+    @apply p-0;
   }
   .mdx li {
     @apply pl-2 py-1;

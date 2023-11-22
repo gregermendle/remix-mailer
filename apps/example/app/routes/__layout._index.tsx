@@ -159,7 +159,7 @@ export default function _Index() {
             <div>
               <iframe
                 title="remix mailer preview"
-                src="/email"
+                src="/email?preview=loginCode&view=mobile"
                 className="w-full h-[650px]"
               />
             </div>
