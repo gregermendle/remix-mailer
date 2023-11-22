@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
-import { shikiize } from "./shiki.server";
 import { cn } from "@/lib/utils";
+import { shikiize } from "./shiki.server";
 
 const Shikiize = ({ id, className }: { id: string; className?: string }) => {
   const { blocks } = useLoaderData<typeof shikiize>();

@@ -5,8 +5,8 @@ import {
 import { TabsContent } from "@radix-ui/react-tabs";
 import { useSearchParams } from "@remix-run/react";
 import React from "react";
+import { usePreviews } from "../client/use-preview";
 import { cn } from "../lib/utils";
-import { usePreviews } from "../server";
 import { Button } from "./button";
 import { Logo } from "./logo";
 import { ScrollArea } from "./scroll-area";
@@ -37,6 +37,7 @@ const PreviewBrowser = React.forwardRef<
         <PreviewBrowserNavItem
           key={title}
           value={title}
+          aria-label={`view ${title}`}
           isSelected={title === searchParams.get("preview")}
           onClick={openPreview}
         >
@@ -65,6 +66,7 @@ const PreviewBrowser = React.forwardRef<
               size="icon"
               variant="outline"
               className="absolute left-2 sm:hidden"
+              aria-label="open side navigation"
             >
               <HamburgerMenuIcon />
             </Button>
@@ -75,13 +77,17 @@ const PreviewBrowser = React.forwardRef<
         </Sheet>
         <Tabs value={view} onValueChange={changeView}>
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="desktop">Desktop</TabsTrigger>
-            <TabsTrigger value="mobile">Mobile</TabsTrigger>
+            <TabsTrigger value="desktop" aria-label="view desktop resolution">
+              Desktop
+            </TabsTrigger>
+            <TabsTrigger value="mobile" aria-label="view mobile resolution">
+              Mobile
+            </TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
       {selected ? (
-        <Tabs value={view}>
+        <Tabs value={view} className="overflow-auto">
           <TabsContent value="desktop" className="w-full h-full">
             <iframe
               srcDoc={selected.rendered}
@@ -92,7 +98,7 @@ const PreviewBrowser = React.forwardRef<
           <TabsContent value="mobile" className="w-full h-full">
             <iframe
               srcDoc={selected.rendered}
-              className="h-full w-full max-w-[375px] max-h-[667px] rounded-2xl mx-auto mt-12 border"
+              className="h-[667px] w-full max-w-[375px] max-h-[667px] rounded-2xl mx-auto mt-12 border"
               title={`${selected.title} preview`}
             />
           </TabsContent>

@@ -1,8 +1,8 @@
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Link, LinkProps } from "@remix-run/react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { cn } from "@/lib/utils";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { Link, LinkProps } from "@remix-run/react";
 
 const LayoutHeaderLogo = ({
   to = "/",

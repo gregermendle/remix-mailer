@@ -1,12 +1,12 @@
 import { ComponentInstanceIcon, CopyIcon } from "@radix-ui/react-icons";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { LoaderFunctionArgs } from "react-router";
-import * as shiki from "~/shiki.server";
 import { delay, fromEvent, mergeMap, tap } from "rxjs";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 import { Shikiize } from "~/shiki";
+import * as shiki from "~/shiki.server";
 
 export const code = `
 import {

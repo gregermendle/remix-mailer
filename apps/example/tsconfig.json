@@ -1,10 +1,6 @@
 {
-  "include": [
-    "remix.env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "app/routes/__toc.docs.mdx"
-  ],
+  "exclude": ["./cypress", "./cypress.config.ts"],
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "types": ["vitest/globals"],
