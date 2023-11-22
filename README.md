@@ -65,3 +65,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default PreviewBrowser;
 ```
+
+## To-do
+
+- [ ] Ability to send emails from preview browser
+- [ ] Instructions on setting up a transporter
+- [ ] Email intercept
+
+Have other ideas? Create an issue and let me know :)
