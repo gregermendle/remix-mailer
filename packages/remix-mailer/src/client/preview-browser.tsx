@@ -51,7 +51,7 @@ const PreviewBrowser = React.forwardRef<
       ref={ref}
       className={cn(
         "grid sm:grid-cols-[260px,1fr] grid-cols-1 grid-rows-[min-content,1fr] h-screen bg-background text-foreground font-sans dark",
-        className
+        className,
       )}
       {...props}
     >
@@ -133,7 +133,7 @@ interface PreviewBrowserNavItemProps
   isSelected?: boolean;
   onClick?(
     value: string,
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ): void;
   value: string;
 }
@@ -147,7 +147,7 @@ const PreviewBrowserNavItem = React.forwardRef<
       (e) => {
         onClick?.(value, e);
       },
-      [value, onClick]
+      [value, onClick],
     );
 
   return (

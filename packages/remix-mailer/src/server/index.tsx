@@ -1,19 +1,23 @@
-import { useLoaderData } from "@remix-run/react";
 import * as React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
-const RM_DATA_KEY = "__rmPreviews";
+export const RM_DATA_KEY = "__rmPreviews";
+const defaultAllowedEnvs = ["development", "test"];
+const defaultRenderer = (Component: React.ComponentType) =>
+  renderToStaticMarkup(<Component />);
 
 export async function loadPreview<C extends React.ComponentType>(
   request: Request,
   p: Record<string, C>,
   {
-    allowedEnvs = ["development", "test"],
-    renderer = (Component: React.ComponentType) =>
-      renderToStaticMarkup(<Component />),
+    allowedEnvs = defaultAllowedEnvs,
+    renderer = defaultRenderer,
   }: {
     allowedEnvs?: string[];
     renderer?: (Component: C) => Promise<string> | string;
+  } = {
+    allowedEnvs: defaultAllowedEnvs,
+    renderer: defaultRenderer,
   },
 ) {
   if (
@@ -40,8 +44,3 @@ export async function loadPreview<C extends React.ComponentType>(
     [RM_DATA_KEY]: { selected, previews: Object.keys(p) },
   };
 }
-
-export const usePreviews = () => {
-  const { [RM_DATA_KEY]: previews } = useLoaderData<typeof loadPreview>();
-  return previews;
-};

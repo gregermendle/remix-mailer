@@ -14,7 +14,7 @@
     "lint": "turbo lint",
     "test": "turbo test",
     "format": "turbo format",
-    "coverage": "npm run test -- --coverage"
+    "coverage": "turbo coverage"
   },
   "keywords": [
     "remix",

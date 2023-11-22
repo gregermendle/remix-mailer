@@ -1,6 +1,6 @@
 ---
 meta:
-  - title: loadPreviews
+  - title: loadPreview
 ---
 
 import * as shiki from "~/shiki.server";
@@ -11,18 +11,18 @@ export const loader = async () => {
     types: {
       lang: "tsx",
       code: `
-type LoadPreviewsFunction = <Preview extends React.ReactComponentType>(
+type loadPreviewFunction = <Preview extends React.ReactComponentType>(
   request: Request,
   previews: Record<string, Preview>,
-  options: LoadPreviewsOptions<Preview>,
-) => LoadPreviewsResult;
+  options: loadPreviewOptions<Preview>,
+) => loadPreviewResult;
 
-type LoadPreviewsOptions<Preview extends React.ReactComponentType> = {
+type loadPreviewOptions<Preview extends React.ReactComponentType> = {
 allowedEnvs?: string[];
 renderer?(Component: Preview): Promise<string> | string;
 };
 
-type LoadPreviewsResult = {
+type loadPreviewResult = {
 [RM_DATA_KEY]: {
 selected: {
 title: string;
@@ -35,7 +35,7 @@ previews: Array<string>;
     production: {
       lang: "tsx",
       code:`
-loadPreviews(
+loadPreview(
 request,
 previews,
 {
@@ -46,7 +46,7 @@ allowedEnvs: ["test", "development", "production"]
     basic: {
       lang: "tsx",
       code:`
-loadPreviews(
+loadPreview(
 request,
 {
 loginCode: LoginCodeEmailTemplate
@@ -61,7 +61,7 @@ renderAsync(<Component {...Component.PreviewProps} />)
 });
 };
 
-# loadPreviews
+# loadPreview
 
 A simple utility for aggregating and rendering email templates.
 
@@ -77,7 +77,7 @@ Accepts three arguments
 
 ## Usage
 
-A basic example of using `loadPreviews` with the async renderer from `@react-email/components`. The default renderer utilizes the `renderToStaticMarkup` function from `react-dom/server`.
+A basic example of using `loadPreview` with the async renderer from `@react-email/components`. The default renderer utilizes the `renderToStaticMarkup` function from `react-dom/server`.
 
 <Shikiize id="basic" />
 

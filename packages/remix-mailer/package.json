@@ -27,7 +27,7 @@
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint --ext .ts,.tsx src/",
     "test": "jest --config=config/jest.config.ts --passWithNoTests",
-    "format": "prettier --write \"src/**/*.tsx\" \"src/**/*.ts\" \"test/index.test.ts\" \"config/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.tsx\" \"src/**/*.ts\" \"test/**/*.test.tsx\" \"config/**/*.ts\"",
     "coverage": "npm run test -- --coverage"
   },
   "keywords": [
