@@ -5,13 +5,13 @@ import {
 import { TabsContent } from "@radix-ui/react-tabs";
 import { useSearchParams } from "@remix-run/react";
 import React from "react";
-import { cn } from "../lib/utils.js";
-import { usePreviews } from "../server/index.js";
-import { Button } from "./button.js";
-import { Logo } from "./logo.js";
-import { ScrollArea } from "./scroll-area.js";
-import { Sheet, SheetContent, SheetTrigger } from "./sheet.js";
-import { Tabs, TabsList, TabsTrigger } from "./tabs.js";
+import { cn } from "../lib/utils";
+import { usePreviews } from "../server";
+import { Button } from "./button";
+import { Logo } from "./logo";
+import { ScrollArea } from "./scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "./sheet";
+import { Tabs, TabsList, TabsTrigger } from "./tabs";
 
 const PreviewBrowser = React.forwardRef<
   HTMLDivElement,
@@ -51,7 +51,7 @@ const PreviewBrowser = React.forwardRef<
       ref={ref}
       className={cn(
         "grid sm:grid-cols-[260px,1fr] grid-cols-1 grid-rows-[min-content,1fr] h-screen bg-background text-foreground font-sans dark",
-        className,
+        className
       )}
       {...props}
     >
@@ -133,7 +133,7 @@ interface PreviewBrowserNavItemProps
   isSelected?: boolean;
   onClick?(
     value: string,
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void;
   value: string;
 }
@@ -147,7 +147,7 @@ const PreviewBrowserNavItem = React.forwardRef<
       (e) => {
         onClick?.(value, e);
       },
-      [value, onClick],
+      [value, onClick]
     );
 
   return (
