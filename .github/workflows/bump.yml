@@ -20,15 +20,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "16"
-          cache: "pnpm"
+          cache: "npm"
       - name: Install dependencies
-        uses: bahmutov/pnpm-install@v1
+        uses: bahmutov/npm-install@v1
       - name: Setup Git
         run: |
           git config user.name '${{ secrets.GIT_USER_NAME }}'
           git config user.email '${{ secrets.GIT_USER_EMAIL }}'
       - name: bump version
-        run: pnpm version ${{ github.event.inputs.version }}
+        run: npm version ${{ github.event.inputs.version }}
 
       - name: Push latest version
         run: git push origin main --follow-tags

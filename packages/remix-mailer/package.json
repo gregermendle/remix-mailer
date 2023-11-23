@@ -4,17 +4,17 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "prepare": "pnpm run build",
+    "prepare": "npm run build",
     "build:ts": "tsc --outDir ./build",
     "build:css": "tailwindcss -i ./src/ui/index.css -o ./build/ui/index.css",
-    "dev:css": "pnpm run build:css -- --watch",
-    "dev:ts": "pnpm run build:ts -- --watch",
+    "dev:css": "npm run build:css -- --watch",
+    "dev:ts": "npm run build:ts -- --watch",
     "dev": "run-p dev:*",
     "build": "run-s build:*",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint --ext .ts,.tsx src/",
     "test": "vitest run",
-    "coverage": "pnpm run test -- --coverage"
+    "coverage": "npm run test -- --coverage"
   },
   "exports": {
     "./package.json": "./package.json",

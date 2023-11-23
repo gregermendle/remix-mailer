@@ -16,10 +16,10 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
-        uses: bahmutov/pnpm-install@v1
+        uses: bahmutov/npm-install@v1
 
       - name: Build
-        run: pnpm run build
+        run: npm run build
 
   typecheck:
     name: Typechecker
@@ -34,10 +34,10 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
-        uses: bahmutov/pnpm-install@v1
+        uses: bahmutov/npm-install@v1
 
       - name: Typecheck
-        run: pnpm run typecheck
+        run: npm run typecheck
 
   test:
     name: Unit and Integration Tests
@@ -52,10 +52,10 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
-        uses: bahmutov/pnpm-install@v1
+        uses: bahmutov/npm-install@v1
 
       - name: Test
-        run: pnpm run test
+        run: npm run test
 
   lint:
     name: Linter
@@ -70,7 +70,7 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
-        uses: bahmutov/pnpm-install@v1
+        uses: bahmutov/npm-install@v1
 
       - name: Lint
-        run: pnpm run lint
+        run: npm run lint
