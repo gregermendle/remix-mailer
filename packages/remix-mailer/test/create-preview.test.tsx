@@ -2,7 +2,7 @@ import { describe, test, expect } from "vitest";
 import { createPreviews } from "../src/server/create-previews";
 
 describe(createPreviews, () => {
-  test("awaits async renderers", async () => {
+  test("awaits async render function", async () => {
     await expect(
       createPreviews(
         new Request("http://localhost?preview=test"),
@@ -14,8 +14,8 @@ describe(createPreviews, () => {
             new Promise((resolve) => {
               setTimeout(() => resolve("done"), 500);
             }),
-        },
-      ),
+        }
+      )
     ).resolves.toEqual({
       __rmPreviews: {
         previews: ["test"],
@@ -26,4 +26,6 @@ describe(createPreviews, () => {
       },
     });
   });
+
+  test("should consider interceptCache", () => {});
 });
