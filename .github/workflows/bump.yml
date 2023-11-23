@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Type of version (major / minor / patch)'
+        description: "Type of version (major / minor / patch)"
         required: true
 
 jobs:
@@ -19,16 +19,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
-          cache: 'npm'
+          node-version: "16"
+          cache: "pnpm"
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        uses: bahmutov/pnpm-install@v1
       - name: Setup Git
         run: |
           git config user.name '${{ secrets.GIT_USER_NAME }}'
           git config user.email '${{ secrets.GIT_USER_EMAIL }}'
       - name: bump version
-        run: npm version ${{ github.event.inputs.version }}
+        run: pnpm version ${{ github.event.inputs.version }}
 
       - name: Push latest version
         run: git push origin main --follow-tags

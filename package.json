@@ -9,11 +9,11 @@
   "scripts": {
     "prepare": "turbo build",
     "build": "turbo build",
-    "dev": "turbo dev",
+    "dev": "turbo dev --filter=example",
     "typecheck": "turbo typecheck",
     "lint": "turbo lint",
     "test": "turbo test",
-    "format": "turbo format",
+    "format": "prettier . --write",
     "coverage": "turbo coverage"
   },
   "keywords": [
@@ -41,6 +41,7 @@
     "jest-fetch-mock": "^3.0.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.1.0",
+    "prettier-plugin-tailwindcss": "^0.5.6",
     "turbo": "^1.10.16"
   },
   "dependencies": {

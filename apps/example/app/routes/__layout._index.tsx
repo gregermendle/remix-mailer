@@ -20,7 +20,7 @@ import { renderAsync } from "@react-email/components";
 
 
 // Import remix-mailer styles and components
-import { loadPreview, PreviewBrowser } from "remix-mailer";
+import { loadPreviews, PreviewBrowser } from "remix-mailer";
 import remixMailerStylesheet from "remix-mailer/index.css";
 
 
@@ -36,7 +36,7 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const previews = await loadPreview(
+  const previews = await loadPreviews(
     request,
     {
       loginCode: LoginCode,
@@ -171,7 +171,7 @@ export default function _Index() {
               </code>
               <Shikiize
                 id="example"
-                className="px-4 py-3 rounded-lg overflow-y-hidden overflow-x-auto text-xs bg-muted/50 shadow-md"
+                className="px-4 py-3 border-none rounded-lg overflow-y-hidden overflow-x-auto text-xs bg-muted/50 shadow-md"
               />
             </div>
           </TabsContent>

@@ -26,9 +26,7 @@ export const shikiize = async (blocksToRender: Record<string, Block>) => {
         code = await prettier.format(block.code.trim(), {
           parser: "typescript",
         });
-      } catch (e) {
-        console.log(e);
-      }
+      } catch {}
 
       return [
         key,

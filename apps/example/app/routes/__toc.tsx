@@ -21,7 +21,7 @@ const pages = [
     href: "/docs/preview-browser",
   },
   {
-    title: "loadPreview",
+    title: "loadPreviews",
     href: "/docs/load-previews",
   },
   {

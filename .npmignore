@@ -4,6 +4,7 @@
 /test
 /coverage
 /.turbo
+*.config.*
 .eslintrc.js
 .gitignore
 .npmignore

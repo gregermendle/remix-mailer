@@ -1,8 +1,15 @@
 {
   "extends": "tsconfig/tsconfig.json",
   "compilerOptions": {
-    "module": "esnext"
+    "esModuleInterop": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/ui/**/*.ts",
+    "src/ui/**/*.tsx",
+    "src/server/**/*.ts",
+    "src/server/**/*.tsx"
+  ],
   "exclude": ["node_modules"]
 }

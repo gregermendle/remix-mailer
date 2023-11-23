@@ -5,13 +5,13 @@ import {
 import { TabsContent } from "@radix-ui/react-tabs";
 import { useSearchParams } from "@remix-run/react";
 import React from "react";
-import { usePreviews } from "../client/use-preview";
-import { cn } from "../lib/utils";
-import { Button } from "./button";
-import { Logo } from "./logo";
-import { ScrollArea } from "./scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "./sheet";
-import { Tabs, TabsList, TabsTrigger } from "./tabs";
+import { Button } from "../components/button.js";
+import { Logo } from "../components/logo.js";
+import { ScrollArea } from "../components/scroll-area.js";
+import { Sheet, SheetContent, SheetTrigger } from "../components/sheet.js";
+import { Tabs, TabsList, TabsTrigger } from "../components/tabs.js";
+import { cn } from "../lib/utils.js";
+import { usePreviews } from "./use-previews.js";
 
 const PreviewBrowser = React.forwardRef<
   HTMLDivElement,

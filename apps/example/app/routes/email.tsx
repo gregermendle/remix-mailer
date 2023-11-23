@@ -4,8 +4,9 @@ import {
   type LinksFunction,
   type LoaderFunctionArgs,
 } from "@remix-run/node";
-import { loadPreview, PreviewBrowser } from "remix-mailer";
-import remixMailerStylesheet from "remix-mailer/index.css";
+import { createPreviews } from "remix-mailer/server/create-previews";
+import remixMailerStylesheet from "remix-mailer/ui/index.css";
+import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
 import { LoginCode } from "~/emails/login-code";
 import { ResetPassword } from "~/emails/reset-password";
 
@@ -17,17 +18,15 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const previews = await loadPreview(
+  const previews = await createPreviews(
     request,
     {
       loginCode: LoginCode,
       resetPassword: ResetPassword,
     },
     {
-      // Dont do this in a typical app unless you want everyone to see your previews
-      allowedEnvs: ["production", "development", "test"],
-      renderer: async (Component) =>
-        renderAsync(<Component {...Component?.PreviewProps} />),
+      render: (Component) =>
+        renderAsync(<Component {...Component.PreviewProps} />),
     },
   );
 

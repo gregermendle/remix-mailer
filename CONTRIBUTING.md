@@ -2,10 +2,10 @@
 
 ## Setup
 
-Run `npm install` to install the dependencies.
+Run `pnpm install` to install the dependencies.
 
-Run the tests with `npm run test`.
+Run the tests with `pnpm run test`.
 
-Run the linter with `npm run lint`.
+Run the linter with `pnpm run lint`.
 
-Run the typechecker with `npm run typecheck`.
+Run the typechecker with `pnpm run typecheck`.

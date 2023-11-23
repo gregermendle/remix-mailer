@@ -4,4 +4,5 @@ module.exports = {
   ignoredRouteFiles: ["**/.*", "**/*.test.{ts,tsx}"],
   watchPaths: ["@/**/*"],
   serverModuleFormat: "cjs",
+  serverDependenciesToBundle: [/remix-mailer.*/],
 };

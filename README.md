@@ -2,7 +2,7 @@
 
 A way to preview and test email templates in Remix with minimal setup.
 
-[Example usage and docs here](remix-mailer.gregermendle.com)
+[Example usage and docs here](https://remix-mailer.gregermendle.com)
 
 ## Installation
 
@@ -30,7 +30,7 @@ import {
 import { renderAsync } from "@react-email/components";
 
 // Import remix-mailer styles and components
-import { loadPreview, PreviewBrowser } from "remix-mailer";
+import { loadPreviews, PreviewBrowser } from "remix-mailer";
 import remixMailerStylesheet from "remix-mailer/index.css";
 
 // Import your email template components
@@ -45,7 +45,7 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const previews = await loadPreview(
+  const previews = await loadPreviews(
     request,
     {
       loginCode: LoginCode,
@@ -55,7 +55,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       // Anything that renders to a string of HTML can be used here
       renderer: async (Component) =>
         renderAsync(<Component {...Component?.PreviewProps} />),
-    }
+    },
   );
 
   return json({
