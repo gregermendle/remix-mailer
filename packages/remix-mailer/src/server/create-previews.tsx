@@ -34,7 +34,7 @@ async function createPreviews<C extends React.ComponentType>(
     return {
       [RM_DATA_KEY]: {
         selected: {
-          title: interceptCache[preview].subject,
+          title: preview,
           rendered: interceptCache[preview].html,
         },
         previews,

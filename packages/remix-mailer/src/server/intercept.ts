@@ -3,38 +3,51 @@ const openImport = import("open");
 
 interface InterceptCache {
   [key: string]: {
-    subject: string;
     html: string;
   };
 }
 
 interface InterceptOptions<T> {
-  shouldIntercept(options: T): boolean;
+  shouldIntercept?: (options: T) => boolean;
+  previewUrl?: string;
 }
+
+const defaultOptions = {
+  previewUrl: "http://localhost:3000",
+  shouldIntercept: () =>
+    process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test",
+};
 
 function intercept<T extends { html: string }, R>(
   _sendMail: (options: T) => R,
-  options: InterceptOptions<T>,
+  {
+    shouldIntercept = defaultOptions.shouldIntercept,
+    previewUrl = defaultOptions.previewUrl,
+  }: InterceptOptions<T> = defaultOptions,
 ) {
   const interceptCache: InterceptCache = {};
 
-  const sendMail = async (options: T & { forceSend?: boolean }) => {
-    if (!options.forceSend) {
+  const sendMail = async (input: T & { forceSend?: boolean }) => {
+    if (
+      !input.forceSend &&
+      typeof shouldIntercept !== "undefined" &&
+      shouldIntercept(input)
+    ) {
       const id = randomUUID();
       const { default: open } = await openImport;
       interceptCache[id] = {
-        subject: "test",
-        html: options.html,
+        html: input.html,
       };
       return {
-        type: "intercept",
-        result: await open(`http://localhost:3000/email?preview=${id}`),
+        type: "intercept" as const,
+        result: await open(`${previewUrl}?preview=${id}`),
       };
     }
 
-    const result = await _sendMail(options);
+    delete input.forceSend;
+    const result = await _sendMail(input);
     return {
-      type: "send",
+      type: "send" as const,
       result,
     };
   };
