@@ -2,7 +2,7 @@
 
 A way to preview and intercept emails in Remix with minimal setup.
 
-[Example usage and docs here](https://remix-mailer.gregermendle.com)
+[Example](https://remix-mailer.gregermendle.com/email)
 
 ## What it does
 

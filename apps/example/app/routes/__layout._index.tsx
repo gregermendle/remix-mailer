@@ -9,22 +9,20 @@ import { Shikiize } from "~/shiki";
 import * as shiki from "~/shiki.server";
 
 export const code = `
+import { renderAsync } from "@react-email/components";
 import {
   json,
   type LinksFunction,
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 
-// This example uses @react-email
-import { renderAsync } from "@react-email/components";
+// remix-mailer
+import { createPreviews } from "remix-mailer/server/create-previews";
+import { requireDev } from "remix-mailer/server/require-dev";
+import remixMailerStylesheet from "remix-mailer/ui/index.css";
+import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
 
-
-// Import remix-mailer styles and components
-import { loadPreviews, PreviewBrowser } from "remix-mailer";
-import remixMailerStylesheet from "remix-mailer/index.css";
-
-
-// Import your email template components
+// email templates
 import { LoginCode } from "~/emails/login-code";
 import { ResetPassword } from "~/emails/reset-password";
 
@@ -36,17 +34,18 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const previews = await loadPreviews(
+  requireDev();
+
+  const previews = await createPreviews(
     request,
     {
       loginCode: LoginCode,
       resetPassword: ResetPassword,
     },
     {
-      // Anything that renders to a string of HTML can be used here
-      renderer: async (Component) =>
-        renderAsync(<Component {...Component?.PreviewProps} />),
-    },
+      render: (Component) =>
+        renderAsync(<Component {...Component.PreviewProps} />),
+    }
   );
 
   return json({
@@ -121,8 +120,7 @@ export default function _Index() {
         with Remix
       </h1>
       <p className="text-muted-foreground">
-        An open-source library for building and prototyping your e-mail
-        templates.
+        A way to preview and intercept emails in Remix with minimal setup.
       </p>
       <div className="space-y-4 pt-16">
         <Tabs value={tab} onValueChange={setTab}>
@@ -165,15 +163,7 @@ export default function _Index() {
             </div>
           </TabsContent>
           <TabsContent value="code" className="m-0">
-            <div className="relative">
-              <code className="absolute right-4 top-2.5 text-xs text-muted-foreground">
-                tsx
-              </code>
-              <Shikiize
-                id="example"
-                className="px-4 py-3 border-none rounded-lg overflow-y-hidden overflow-x-auto text-xs bg-muted/50 shadow-md"
-              />
-            </div>
+            <Shikiize id="example" lang="tsx" fileName="app/routes/email.tsx" />
           </TabsContent>
         </Tabs>
       </div>

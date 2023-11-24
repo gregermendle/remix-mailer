@@ -25,7 +25,7 @@ const LayoutHeaderNav = () => {
   return (
     <div className="flex items-center gap-4">
       <Button variant="outline" size="sm" asChild>
-        <Link to="/docs/installation">Docs</Link>
+        <Link to="https://github.com/gregermendle/remix-mailer">Docs</Link>
       </Button>
       <Link to="https://github.com/gregermendle/remix-mailer">
         <GitHubLogoIcon className="w-6 h-6 text-muted-foreground" />
