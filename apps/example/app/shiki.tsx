@@ -1,7 +1,7 @@
 import { FileIcon } from "@radix-ui/react-icons";
 import { useLoaderData } from "@remix-run/react";
 import { cn } from "@/lib/utils";
-import { shikiize } from "./shiki.server";
+import type { shikiize } from "./shiki.server";
 
 const Shikiize = ({
   id,

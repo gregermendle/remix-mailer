@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node";
 import * as prettier from "prettier";
-import { Lang } from "shiki";
+import type { Lang } from "shiki";
 import "shiki/languages/tsx.tmLanguage.json";
 import "shiki/languages/shellscript.tmLanguage.json";
 import "shiki/themes/css-variables.json";

@@ -91,7 +91,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     {
       render: (Component) =>
         renderAsync(<Component {...Component.PreviewProps} />),
-    }
+    },
   );
 
   return json({
@@ -139,7 +139,7 @@ const previews = await createPreviews(
     interceptCache,
     render: (Component) =>
       renderAsync(<Component {...Component.PreviewProps} />),
-  }
+  },
 );
 ```
 

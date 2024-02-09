@@ -32,7 +32,6 @@ module.exports = {
         "newlines-between": "never",
       },
     ],
-    "prettier/prettier": "error",
     "no-only-tests/no-only-tests": "error",
   },
   overrides: [

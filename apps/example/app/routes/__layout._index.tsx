@@ -1,6 +1,6 @@
 import { ComponentInstanceIcon, CopyIcon } from "@radix-ui/react-icons";
 import { useEffect, useRef, useState } from "react";
-import { LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 import { delay, fromEvent, mergeMap, tap } from "rxjs";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
