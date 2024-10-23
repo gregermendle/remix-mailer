@@ -2,10 +2,11 @@ import {
   ComponentInstanceIcon,
   CopyIcon,
   FileIcon,
+  GitHubLogoIcon,
 } from "@radix-ui/react-icons";
 import { renderAsync } from "@react-email/components";
 import { LinksFunction, json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
 import { LoaderFunctionArgs } from "react-router";
 import { createPreviews } from "remix-mailer/server/create-previews";
@@ -13,19 +14,13 @@ import { delay, fromEvent, mergeMap, tap } from "rxjs";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import {
-  Layout,
-  LayoutFooter,
-  LayoutHeader,
-  LayoutHeaderLogo,
-  LayoutHeaderNav,
-} from "~/components/layout";
 import LoginCode from "~/emails/login-code";
 import ResetPassword from "~/emails/reset-password";
 import * as shiki from "~/shiki.server";
 import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
 
 import remixMailerStylesheet from "remix-mailer/ui/index.css";
+import { Logo } from "@/components/ui/logo";
 
 export const links: LinksFunction = () => [
   {
@@ -136,30 +131,44 @@ export default function _Index() {
   }, []);
 
   return (
-    <Layout>
-      <LayoutHeader>
-        <LayoutHeaderLogo />
-        <LayoutHeaderNav />
-      </LayoutHeader>
+    <main>
+      <div className="bg-background/60 backdrop-blur-lg px-6 max-w-4xl mx-auto pt-6">
+        <header className="flex mx-auto w-full items-center justify-between py-4">
+          <Link className="flex items-center gap-3" to="/">
+            <Logo className="w-8 h-8" />
+            <span className="font-semibold text-xl">Remix Mailer</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <Button
+              ref={copyRef}
+              aria-label="copy npm install command"
+              variant="secondary"
+              size="sm"
+              className="relative gap-2 text-muted-foreground overflow-hidden"
+            >
+              <code
+                className={cn(
+                  "absolute inset-0 bg-inherit flex items-center justify-center opacity-0 overlay transition-opacity",
+                  copied && "opacity-100",
+                )}
+              >
+                Copied!
+              </code>
+              <code>npm i remix-mailer</code>
+              <CopyIcon />
+            </Button>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="https://github.com/gregermendle/remix-mailer">
+                Docs
+              </Link>
+            </Button>
+            <Link to="https://github.com/gregermendle/remix-mailer">
+              <GitHubLogoIcon className="w-6 h-6 text-muted-foreground" />
+            </Link>
+          </div>
+        </header>
+      </div>
       <div className="max-w-4xl w-full mx-auto px-6 lg:px-0 pt-16 mb-12">
-        <Button
-          ref={copyRef}
-          aria-label="copy npm install command"
-          variant="secondary"
-          size="sm"
-          className="relative gap-2 text-muted-foreground overflow-hidden mb-6"
-        >
-          <code
-            className={cn(
-              "absolute inset-0 bg-inherit flex items-center justify-center opacity-0 overlay transition-opacity",
-              copied && "opacity-100",
-            )}
-          >
-            Copied!
-          </code>
-          <code>npm i remix-mailer</code>
-          <CopyIcon />
-        </Button>
         <h1 className="text-5xl font-semibold pb-2 tracking-wide leading-none font-serif">
           Simple e-mail previews
           <br />
@@ -214,8 +223,25 @@ export default function _Index() {
           </Tabs>
         </div>
       </div>
-      <LayoutFooter />
-    </Layout>
+      <footer className="flex text-sm items-center justify-center border-t py-6 text-muted-foreground">
+        <p className="border-r pr-2.5 mr-2.5">
+          by{" "}
+          <Link to="https://github.com/gregermendle" className="underline">
+            greg
+          </Link>
+        </p>
+        <p className="border-r pr-2.5 mr-2.5">
+          source is available on{" "}
+          <Link
+            to="https://github.com/gregermendle/remix-mailer"
+            className="underline"
+          >
+            github
+          </Link>
+        </p>
+        <p>prs welcome :)</p>
+      </footer>
+    </main>
   );
 }
 
