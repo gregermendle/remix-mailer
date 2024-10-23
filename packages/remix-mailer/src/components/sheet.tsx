@@ -12,8 +12,6 @@ const SheetTrigger = SheetPrimitive.Trigger;
 
 const SheetClose = SheetPrimitive.Close;
 
-const SheetPortal = SheetPrimitive.Portal;
-
 const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
@@ -21,7 +19,7 @@ const SheetOverlay = React.forwardRef<
   <SheetPrimitive.Overlay
     className={cn(
       "rm-fixed rm-inset-0 rm-z-50 rm-bg-black/80 rm- data-[state=open]:rm-animate-in data-[state=closed]:rm-animate-out data-[state=closed]:rm-fade-out-0 data-[state=open]:rm-fade-in-0",
-      className,
+      className
     )}
     {...props}
     ref={ref}
@@ -45,7 +43,7 @@ const sheetVariants = cva(
     defaultVariants: {
       side: "right",
     },
-  },
+  }
 );
 
 interface SheetContentProps
@@ -56,7 +54,7 @@ const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
 >(({ side = "right", className, children, ...props }, ref) => (
-  <SheetPortal>
+  <>
     <SheetOverlay />
     <SheetPrimitive.Content
       ref={ref}
@@ -69,7 +67,7 @@ const SheetContent = React.forwardRef<
       </SheetPrimitive.Close>
       {children}
     </SheetPrimitive.Content>
-  </SheetPortal>
+  </>
 ));
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 
@@ -80,7 +78,7 @@ const SheetHeader = ({
   <div
     className={cn(
       "rm-flex rm-flex-col rm-space-y-2 rm-text-center sm:rm-text-left",
-      className,
+      className
     )}
     {...props}
   />
@@ -94,7 +92,7 @@ const SheetFooter = ({
   <div
     className={cn(
       "rm-flex rm-flex-col-reverse sm:rm-flex-row sm:rm-justify-end sm:rm-space-x-2",
-      className,
+      className
     )}
     {...props}
   />
@@ -127,7 +125,6 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
 export {
   Sheet,
-  SheetPortal,
   SheetOverlay,
   SheetTrigger,
   SheetClose,

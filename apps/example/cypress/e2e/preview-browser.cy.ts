@@ -24,15 +24,15 @@ describe("PreviewBrowser", () => {
       expect(loc.search).to.eq("?preview=loginCode&view=mobile");
     });
     cy.findByTitle("loginCode preview")
-      .should("have.class", "max-w-[375px]")
-      .should("have.class", "max-h-[667px]");
+      .should("have.class", "rm-max-w-[375px]")
+      .should("have.class", "rm-max-h-[667px]");
     cy.get('[aria-label="view desktop resolution"]').click();
     cy.location().should((loc) => {
       expect(loc.search).to.eq("?preview=loginCode&view=desktop");
     });
     cy.findByTitle("loginCode preview")
-      .should("not.have.class", "max-w-[375px]")
-      .should("not.have.class", "max-h-[667px]");
+      .should("not.have.class", "rm-max-w-[375px]")
+      .should("not.have.class", "rm-max-h-[667px]");
   });
 
   it("should show a hamburger menu on small resolutions", () => {
