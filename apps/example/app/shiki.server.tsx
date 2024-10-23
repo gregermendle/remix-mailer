@@ -1,4 +1,3 @@
-import { json } from "@remix-run/node";
 import * as prettier from "prettier";
 import type { Lang } from "shiki";
 import "shiki/languages/tsx.tmLanguage.json";
@@ -37,7 +36,7 @@ export const shikiize = async (blocksToRender: Record<string, Block>) => {
     }),
   );
 
-  return json({
+  return {
     blocks: Object.fromEntries(blocks) as Record<string, string>,
-  });
+  };
 };

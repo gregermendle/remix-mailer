@@ -23,12 +23,16 @@ const PreviewBrowser = React.forwardRef<
 
   const changeView = (view: string) => {
     searchParams.set("view", view);
-    setSearchParams(searchParams);
+    setSearchParams(searchParams, {
+      preventScrollReset: true,
+    });
   };
 
   const openPreview = (title: string) => {
     searchParams.set("preview", title);
-    setSearchParams(searchParams);
+    setSearchParams(searchParams, {
+      preventScrollReset: true,
+    });
   };
 
   const nav = (
