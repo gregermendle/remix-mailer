@@ -5,10 +5,13 @@ import {
   GitHubLogoIcon,
 } from "@radix-ui/react-icons";
 import { renderAsync } from "@react-email/components";
-import { LinksFunction, json } from "@remix-run/node";
+import {
+  type LoaderFunctionArgs,
+  json,
+  type LinksFunction,
+} from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
-import { LoaderFunctionArgs } from "react-router";
 import { createPreviews } from "remix-mailer/server/create-previews";
 import { delay, fromEvent, mergeMap, tap } from "rxjs";
 import { Button } from "@/components/ui/button";
@@ -132,13 +135,15 @@ export default function _Index() {
 
   return (
     <main>
-      <div className="bg-background/60 backdrop-blur-lg px-6 max-w-4xl mx-auto pt-6">
+      <div className="bg-background/60 backdrop-blur-lg lg:px-0 px-6 max-w-4xl mx-auto pt-6">
         <header className="flex mx-auto w-full items-center justify-between py-4">
           <Link className="flex items-center gap-3" to="/">
             <Logo className="w-8 h-8" />
-            <span className="font-semibold text-xl">Remix Mailer</span>
+            <span className="font-semibold text-xl hidden sm:block">
+              Remix Mailer
+            </span>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <Button
               ref={copyRef}
               aria-label="copy npm install command"

@@ -1,29 +1,29 @@
+import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import * as React from "react";
 import { cn } from "../lib/utils.js";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "rm-inline-flex rm-items-center rm-justify-center rm-gap-2 rm-whitespace-nowrap rm-rounded-md rm-text-sm rm-font-medium rm-transition-colors focus-visible:rm-outline-none focus-visible:rm-ring-1 focus-visible:rm-ring-ring disabled:rm-pointer-events-none disabled:rm-opacity-50 [&_svg]:rm-pointer-events-none [&_svg]:rm-size-4 [&_svg]:rm-shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+          "rm-bg-primary rm-text-primary-foreground rm-shadow hover:rm-bg-primary/90",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "rm-bg-destructive rm-text-destructive-foreground rm-shadow-sm hover:rm-bg-destructive/90",
         outline:
-          "border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "rm-border rm-border-input rm-bg-background rm-shadow-sm hover:rm-bg-accent hover:rm-text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "rm-bg-secondary rm-text-secondary-foreground rm-shadow-sm hover:rm-bg-secondary/80",
+        ghost: "hover:rm-bg-accent hover:rm-text-accent-foreground",
+        link: "rm-text-primary rm-underline-offset-4 hover:rm-underline",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        default: "rm-h-9 rm-px-4 rm-py-2",
+        sm: "rm-h-8 rm-rounded-md rm-px-3 rm-text-xs",
+        lg: "rm-h-10 rm-rounded-md rm-px-8",
+        icon: "rm-h-9 rm-w-9",
       },
     },
     defaultVariants: {

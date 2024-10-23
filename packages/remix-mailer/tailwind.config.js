@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: ["class", ["rm-dark"]],
   content: ["./src/**/*.{ts,tsx}"],
+  prefix: "rm-",
   theme: {
     container: {
       center: true,
@@ -25,44 +26,44 @@ module.exports = {
         ],
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: "hsl(var(--rm-border))",
+        input: "hsl(var(--rm-input))",
+        ring: "hsl(var(--rm-ring))",
+        background: "hsl(var(--rm-background))",
+        foreground: "hsl(var(--rm-foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "hsl(var(--rm-primary))",
+          foreground: "hsl(var(--rm-primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "hsl(var(--rm-secondary))",
+          foreground: "hsl(var(--rm-secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "hsl(var(--rm-destructive))",
+          foreground: "hsl(var(--rm-destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "hsl(var(--rm-muted))",
+          foreground: "hsl(var(--rm-muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(var(--rm-accent))",
+          foreground: "hsl(var(--rm-accent-foreground))",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "hsl(var(--rm-popover))",
+          foreground: "hsl(var(--rm-popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "hsl(var(--rm-card))",
+          foreground: "hsl(var(--rm-card-foreground))",
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "var(--rm-radius)",
+        md: "calc(var(--rm-radius) - 2px)",
+        sm: "calc(var(--rm-radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {

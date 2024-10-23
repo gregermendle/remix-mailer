@@ -52,66 +52,68 @@ const PreviewBrowser = React.forwardRef<
   );
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "grid sm:grid-cols-[260px,1fr] grid-cols-1 grid-rows-[min-content,1fr] h-screen bg-background text-foreground font-sans dark",
-        className,
-      )}
-      {...props}
-    >
-      <div className="row-span-2 grid-rows-[min-content,1fr] grid-cols-1 hidden sm:grid border-r">
-        {nav}
-      </div>
-      <div className="flex items-center justify-center gap-2 px-4 border-b h-14 relative">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              size="icon"
-              variant="outline"
-              className="absolute left-2 sm:hidden"
-              aria-label="open side navigation"
-            >
-              <HamburgerMenuIcon />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="p-0 max-w-[260px]">
-            {nav}
-          </SheetContent>
-        </Sheet>
-        <Tabs value={view} onValueChange={changeView}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="desktop" aria-label="view desktop resolution">
-              Desktop
-            </TabsTrigger>
-            <TabsTrigger value="mobile" aria-label="view mobile resolution">
-              Mobile
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-      </div>
-      {selected ? (
-        <Tabs value={view} className="overflow-auto">
-          <TabsContent value="desktop" className="w-full h-full">
-            <iframe
-              srcDoc={selected.rendered}
-              className="h-full w-full"
-              title={`${selected.title} preview`}
-            />
-          </TabsContent>
-          <TabsContent value="mobile" className="w-full h-full">
-            <iframe
-              srcDoc={selected.rendered}
-              className="h-[667px] w-full max-w-[375px] max-h-[667px] rounded-2xl mx-auto mt-12 border"
-              title={`${selected.title} preview`}
-            />
-          </TabsContent>
-        </Tabs>
-      ) : (
-        <div className="text-muted-foreground flex items-center justify-center">
-          <p>No preview selected.</p>
+    <div className="rm">
+      <div
+        ref={ref}
+        className={cn(
+          "rm-dark rm-grid sm:rm-grid-cols-[260px,1fr] rm-grid-cols-1 rm-grid-rows-[min-content,1fr] rm-h-screen rm-bg-background rm-text-foreground rm-font-sans",
+          className,
+        )}
+        {...props}
+      >
+        <div className="rm-row-span-2 rm-grid-rows-[min-content,1fr] rm-grid-cols-1 rm-hidden sm:rm-grid rm-border-r">
+          {nav}
         </div>
-      )}
+        <div className="rm-flex rm-items-center rm-justify-center rm-gap-2 rm-px-4 rm-border-b rm-h-14 rm-relative">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                size="icon"
+                variant="outline"
+                className="rm-absolute rm-left-2 sm:rm-hidden"
+                aria-label="open side navigation"
+              >
+                <HamburgerMenuIcon />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="rm-p-0 rm-max-w-[260px]">
+              {nav}
+            </SheetContent>
+          </Sheet>
+          <Tabs value={view} onValueChange={changeView}>
+            <TabsList className="rm-grid rm-w-full rm-grid-cols-2">
+              <TabsTrigger value="desktop" aria-label="view desktop resolution">
+                Desktop
+              </TabsTrigger>
+              <TabsTrigger value="mobile" aria-label="view mobile resolution">
+                Mobile
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+        {selected ? (
+          <Tabs value={view} className="rm-overflow-auto">
+            <TabsContent value="desktop" className="rm-w-full rm-h-full">
+              <iframe
+                srcDoc={selected.rendered}
+                className="h-full w-full"
+                title={`${selected.title} preview`}
+              />
+            </TabsContent>
+            <TabsContent value="mobile" className="rm-w-full rm-h-full">
+              <iframe
+                srcDoc={selected.rendered}
+                className="rm-h-[667px] rm-w-full rm-max-w-[375px] rm-max-h-[667px] rm-rounded-2xl rm-mx-auto rm-mt-12 rm-border"
+                title={`${selected.title} preview`}
+              />
+            </TabsContent>
+          </Tabs>
+        ) : (
+          <div className="rm-text-muted-foreground rm-flex rm-items-center rm-justify-center">
+            <p>No preview selected.</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 });
@@ -124,15 +126,15 @@ const PreviewBrowserNav = React.forwardRef<
 >(({ children, ...rest }, ref) => {
   return (
     <div ref={ref} {...rest}>
-      <div className="px-6 border-b border-dotted flex gap-1.5 items-center h-14">
-        <Logo className="w-7 h-7" />
-        <span className="font-semibold">Remix Mailer</span>
+      <div className="rm-px-6 rm-border-b rm-border-dotted rm-flex rm-gap-1.5 rm-items-center rm-h-14">
+        <Logo className="rm-w-7 rm-h-7" />
+        <span className="rm-font-semibold">Remix Mailer</span>
       </div>
       <ScrollArea>
-        <h2 className="flex items-center gap-2 pb-1 text-sm font-semibold text-muted-foreground pt-4 px-6">
+        <h2 className="rm-flex rm-items-center rm-gap-2 rm-pb-1 rm-text-sm rm-font-semibold rm-text-muted-foreground rm-pt-4 rm-px-6">
           Previews
         </h2>
-        <div className="px-4">{children}</div>
+        <div className="rm-px-4">{children}</div>
       </ScrollArea>
     </div>
   );
@@ -166,10 +168,10 @@ const PreviewBrowserNavItem = React.forwardRef<
       variant={isSelected ? "secondary" : "ghost"}
       onClick={onClickWithValue}
       size="sm"
-      className={cn("mb-1 gap-1.5 w-full justify-start", className)}
+      className={cn("rm-mb-1 rm-gap-1.5 rm-w-full rm-justify-start", className)}
       {...rest}
     >
-      <ComponentPlaceholderIcon className="text-muted-foreground" />
+      <ComponentPlaceholderIcon className="rm-text-muted-foreground" />
       {children}
     </Button>
   );

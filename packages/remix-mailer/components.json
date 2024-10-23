@@ -7,10 +7,12 @@
     "config": "tailwind.config.js",
     "css": "src/index.css",
     "baseColor": "zinc",
-    "cssVariables": true
+    "cssVariables": true,
+    "prefix": "rm-"
   },
   "aliases": {
-    "components": "src/client",
+    "components": "src/",
+    "ui": "src/components",
     "utils": "src/utils"
   }
 }
