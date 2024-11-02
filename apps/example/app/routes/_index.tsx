@@ -5,12 +5,8 @@ import {
   GitHubLogoIcon,
 } from "@radix-ui/react-icons";
 import { renderAsync } from "@react-email/components";
-import {
-  type LoaderFunctionArgs,
-  json,
-  type LinksFunction,
-} from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { type LoaderFunctionArgs, json } from "@remix-run/node";
+import { Link } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
 import { createPreviews } from "remix-mailer/server/create-previews";
 import { delay, fromEvent, mergeMap, tap } from "rxjs";
@@ -19,67 +15,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import LoginCode from "~/emails/login-code";
 import ResetPassword from "~/emails/reset-password";
-import * as shiki from "~/shiki.server";
 import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
+import exampleCode from "~/example.shiki";
+import viteExampleCode from "~/vite-example.shiki";
 
-import remixMailerStylesheet from "remix-mailer/ui/index.css";
+import "remix-mailer/ui/index.css";
 import { Logo } from "@/components/ui/logo";
 
-export const links: LinksFunction = () => [
-  {
-    rel: "stylesheet",
-    href: remixMailerStylesheet,
-  },
-];
-
-export const code = `
-import { renderAsync } from "@react-email/components";
-import {
-  json,
-  type LinksFunction,
-  type LoaderFunctionArgs,
-} from "@remix-run/node";
-
-// remix-mailer
-import { createPreviews } from "remix-mailer/server/create-previews";
-import { requireDev } from "remix-mailer/server/require-dev";
-import remixMailerStylesheet from "remix-mailer/ui/index.css";
-import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
-
-// email templates
-import { LoginCode } from "~/emails/login-code";
-import { ResetPassword } from "~/emails/reset-password";
-
-export const links: LinksFunction = () => [
-  {
-    rel: "stylesheet",
-    href: remixMailerStylesheet,
-  },
-];
-
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-  requireDev();
-
-  const previews = await createPreviews(
-    request,
-    {
-      loginCode: LoginCode,
-      resetPassword: ResetPassword,
-    },
-    {
-      render: (Component) =>
-        renderAsync(<Component {...Component.PreviewProps} />),
-    }
-  );
-
-  return json({
-    ...previews,
-  });
-};
-
-export default PreviewBrowser;
-`;
-
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const previews = await createPreviews(
     request,
@@ -95,12 +37,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   return json({
     ...previews,
-    shikiized: await shiki.shikiize({
-      example: {
-        lang: "tsx",
-        code,
-      },
-    }),
   });
 };
 
@@ -192,10 +128,16 @@ export default function _Index() {
                 Previewer
               </TabsTrigger>
               <TabsTrigger
+                value="vite"
+                className="transition-colors border border-border/0 data-[state=active]:border-border/100"
+              >
+                Vite
+              </TabsTrigger>
+              <TabsTrigger
                 value="code"
                 className="transition-colors border border-border/0 data-[state=active]:border-border/100"
               >
-                Code
+                No Vite
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -219,10 +161,17 @@ export default function _Index() {
               </div>
             </TabsContent>
             <TabsContent value="code" className="m-0">
-              <Shikiize
-                id="example"
+              <CodeBlock
                 lang="tsx"
                 fileName="app/routes/email.tsx"
+                code={exampleCode}
+              />
+            </TabsContent>
+            <TabsContent value="vite" className="m-0">
+              <CodeBlock
+                lang="tsx"
+                fileName="app/routes/email.tsx"
+                code={viteExampleCode}
               />
             </TabsContent>
           </Tabs>
@@ -250,25 +199,17 @@ export default function _Index() {
   );
 }
 
-const Shikiize = ({
-  id,
+const CodeBlock = ({
   className,
   fileName,
   lang,
+  code,
 }: {
-  id: string;
   className?: string;
   fileName?: string;
   lang?: string;
+  code: string;
 }) => {
-  const {
-    shikiized: { blocks },
-  } = useLoaderData<typeof loader>();
-
-  if (!blocks[id]) {
-    throw new Error("Highlighted code block does not exist for id: " + id);
-  }
-
   return (
     <div className="relative text-xs bg-muted/50 shadow-md rounded-lg leading-loose">
       {typeof fileName === "string" && (
@@ -287,7 +228,7 @@ const Shikiize = ({
         </code>
       )}
       <div
-        dangerouslySetInnerHTML={{ __html: blocks[id] }}
+        dangerouslySetInnerHTML={{ __html: code }}
         className={cn("overflow-y-hidden overflow-x-auto px-4 py-3", className)}
       />
     </div>

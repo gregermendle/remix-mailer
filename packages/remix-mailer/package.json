@@ -21,6 +21,7 @@
     "./server/intercept": "./build/server/intercept.js",
     "./server/create-previews": "./build/server/create-previews.js",
     "./server/require-dev": "./build/server/require-dev.js",
+    "./server/emails-from-glob": "./build/server/emails-from-glob.js",
     "./ui/preview-browser": "./build/ui/preview-browser.js",
     "./ui/use-previews": "./build/ui/use-previews.js",
     "./ui/index.css": "./build/ui/index.css"
