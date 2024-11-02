@@ -17,7 +17,7 @@ async function emailsFromGlob<T>(glob: Record<string, () => Promise<unknown>>) {
       emails[component.default.name] = component.default as EmailComponent<T>;
     } else {
       console.error(
-        `Remix-Mailer: ${email} does not contain a default export or the default export is not a component.`
+        `Remix-Mailer: ${email} does not contain a default export or the default export is not a component.`,
       );
     }
   }
