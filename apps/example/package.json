@@ -9,10 +9,11 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/index.js",
+    "start": "remix-serve ./build/server/index.js",
     "test": "start-server-and-test dev http-get://localhost:3000 cy:run",
     "typecheck": "tsc"
   },
+  "type": "module",
   "prettier": {},
   "eslintIgnore": [
     "/node_modules",
@@ -68,7 +69,7 @@
     "tsconfig": "*",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2",
-    "vite": "^4.5.5",
+    "vite": "^5.4.10",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.6"
   },

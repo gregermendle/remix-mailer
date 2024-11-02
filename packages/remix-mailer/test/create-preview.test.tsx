@@ -14,8 +14,8 @@ describe(createPreviews, () => {
             new Promise((resolve) => {
               setTimeout(() => resolve("done"), 500);
             }),
-        },
-      ),
+        }
+      )
     ).resolves.toEqual({
       __rmPreviews: {
         previews: ["test"],
@@ -26,6 +26,4 @@ describe(createPreviews, () => {
       },
     });
   });
-
-  test("should consider interceptCache", () => {});
 });

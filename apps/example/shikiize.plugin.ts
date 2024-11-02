@@ -3,11 +3,12 @@ import "shiki/languages/tsx.tmLanguage.json";
 import "shiki/languages/shellscript.tmLanguage.json";
 import "shiki/themes/css-variables.json";
 import shiki from "shiki";
+import { type PluginOption } from "vite";
 export * from "shiki";
 
 const fileRegex = /\.(shiki)$/;
 
-export const codeToHTML = async (input) => {
+export const codeToHTML = async (input: string) => {
   const highlighter = await shiki.getHighlighter({
     theme: "css-variables",
     langs: ["shellscript", "tsx"],
@@ -41,5 +42,5 @@ export default function shikiize() {
         };
       }
     },
-  };
+  } as PluginOption;
 }
