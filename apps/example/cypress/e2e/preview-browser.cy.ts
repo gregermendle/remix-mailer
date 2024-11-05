@@ -7,7 +7,6 @@ describe("PreviewBrowser", () => {
   it("should open preview", () => {
     cy.visit("/email");
     cy.get('[aria-label="view LoginCode"]').click();
-    cy.get('[aria-label="view LoginCode"]').click();
     cy.location().should((loc) => {
       expect(loc.search).to.eq("?preview=LoginCode");
     });
