@@ -13,7 +13,6 @@
     "test": "start-server-and-test dev http-get://localhost:3000 cy:run",
     "typecheck": "tsc"
   },
-  "type": "module",
   "prettier": {},
   "eslintIgnore": [
     "/node_modules",

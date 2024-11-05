@@ -5,6 +5,7 @@ import "shiki/themes/css-variables.json";
 import shiki from "shiki";
 import { type PluginOption } from "vite";
 export * from "shiki";
+import { EOL } from "os";
 
 const fileRegex = /\.(shiki)$/;
 
@@ -14,7 +15,7 @@ export const codeToHTML = async (input: string) => {
     langs: ["shellscript", "tsx"],
   });
 
-  let [lang, code] = input.split("\n\n\n");
+  let [lang, code] = input.split(EOL + EOL + EOL);
   try {
     code = await prettier.format(code.trim(), {
       parser: "typescript",
