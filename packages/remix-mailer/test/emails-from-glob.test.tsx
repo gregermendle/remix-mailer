@@ -27,11 +27,11 @@ describe(emailsFromGlob, () => {
     expect(consoleSpy).toBeCalledTimes(2);
     expect(consoleSpy).toHaveBeenNthCalledWith(
       1,
-      "Remix-Mailer: ./__mocks/email-invalid-default.js does not contain a default export or the default export is not a component."
+      "Remix-Mailer: ./__mocks/email-invalid-default.js does not contain a default export or the default export is not a component.",
     );
     expect(consoleSpy).toHaveBeenNthCalledWith(
       2,
-      "Remix-Mailer: ./__mocks/email-no-default.js does not contain a default export or the default export is not a component."
+      "Remix-Mailer: ./__mocks/email-no-default.js does not contain a default export or the default export is not a component.",
     );
   });
 });

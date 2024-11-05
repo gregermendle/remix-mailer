@@ -1,10 +1,6 @@
 import * as prettier from "prettier";
-import "shiki/languages/tsx.tmLanguage.json";
-import "shiki/languages/shellscript.tmLanguage.json";
-import "shiki/themes/css-variables.json";
 import shiki from "shiki";
 import { type PluginOption } from "vite";
-export * from "shiki";
 import { EOL } from "os";
 
 const fileRegex = /\.(shiki)$/;
