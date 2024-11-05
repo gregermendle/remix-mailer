@@ -51,11 +51,52 @@ If you and are having issues loading typescript types for `remix-mailer`, ensure
 
 ### Previews
 
-Previews are easy to setup and rely on zero magic. Start by creating a route where you would like your previews to live. For this example we are using `app/routes/email.tsx` which will be a route at `/email`. Next, import `remix-mailer` utils and components along with your email templates and render function of choice. This example uses `@react-email/components` but you can essentially use render function that returns a string of html.
+Previews are easy to setup and rely on zero magic. Below are examples of setting up an email preview route.
 
 > Note that `requireDev` is a helper that ensures you are in either `development` or `test` when accessing this route. Otherwise a `403` response is thrown.
 
 ```tsx
+// with vite
+
+// app/routes/email.tsx -> /email
+import { renderAsync } from "@react-email/components";
+import { json, type LoaderFunctionArgs } from "@remix-run/node";
+
+// remix-mailer
+import { createPreviews } from "remix-mailer/server/create-previews";
+import { requireDev } from "remix-mailer/server/require-dev";
+import { emailsFromGlob } from "remix-mailer/server/emails-from-glob";
+import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
+
+import "remix-mailer/ui/index.css";
+
+// import emails using glob
+const emails = import.meta.glob("~/emails/*.tsx");
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  requireDev();
+
+  const previews = await createPreviews(
+    request,
+    // takes our glob import and turns it into an emails object
+    await emailsFromGlob(emails),
+    {
+      render: (Component) =>
+        renderAsync(<Component {...Component.PreviewProps} />),
+    }
+  );
+
+  return json({
+    ...previews,
+  });
+};
+
+export default PreviewBrowser;
+```
+
+```tsx
+// without vite
+
 // app/routes/email.tsx -> /email
 import { renderAsync } from "@react-email/components";
 import {
@@ -84,6 +125,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const previews = await createPreviews(
     request,
+    // our email components imported above
     {
       loginCode: LoginCode,
       resetPassword: ResetPassword,
@@ -91,7 +133,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     {
       render: (Component) =>
         renderAsync(<Component {...Component.PreviewProps} />),
-    },
+    }
   );
 
   return json({
@@ -104,7 +146,7 @@ export default PreviewBrowser;
 
 ### Intercept
 
-Intercept allows you to catch emails that are being sent in development environments for an easier testing experience. When an email is sent in `development` or `test`, a new browser window will be opened with the rendered result of the email. This can be helpful for example if you are testing locally with magic-link based authentication. This example uses `nodemailer` as a transport, but any transport can be used.
+Intercept allows you to catch emails that are being sent in development and test. When an email is sent in `development` or `test`, a new browser window will be opened to a preview of the email that was sent. This can be helpful for example if you are testing locally with magic-link based authentication. This example uses `nodemailer` as a transport, but any transport can be used.
 
 ```tsx
 // /app/email.server.ts
@@ -139,7 +181,7 @@ const previews = await createPreviews(
     interceptCache,
     render: (Component) =>
       renderAsync(<Component {...Component.PreviewProps} />),
-  },
+  }
 );
 ```
 

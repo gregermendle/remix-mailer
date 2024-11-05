@@ -6,31 +6,31 @@ describe("PreviewBrowser", () => {
 
   it("should open preview", () => {
     cy.visit("/email");
-    cy.get('[aria-label="view loginCode"]').click();
+    cy.get('[aria-label="view LoginCode"]').click();
     cy.location().should((loc) => {
-      expect(loc.search).to.eq("?preview=loginCode");
+      expect(loc.search).to.eq("?preview=LoginCode");
     });
 
-    cy.get('[aria-label="view resetPassword"]').click();
+    cy.get('[aria-label="view ResetPassword"]').click();
     cy.location().should((loc) => {
-      expect(loc.search).to.eq("?preview=resetPassword");
+      expect(loc.search).to.eq("?preview=ResetPassword");
     });
   });
 
   it("should switch between mobile and desktop view", () => {
-    cy.visit("/email?preview=loginCode");
+    cy.visit("/email?preview=LoginCode");
     cy.get('[aria-label="view mobile resolution"]').click();
     cy.location().should((loc) => {
-      expect(loc.search).to.eq("?preview=loginCode&view=mobile");
+      expect(loc.search).to.eq("?preview=LoginCode&view=mobile");
     });
-    cy.findByTitle("loginCode preview")
+    cy.findByTitle("LoginCode preview")
       .should("have.class", "rm-max-w-[375px]")
       .should("have.class", "rm-max-h-[667px]");
     cy.get('[aria-label="view desktop resolution"]').click();
     cy.location().should((loc) => {
-      expect(loc.search).to.eq("?preview=loginCode&view=desktop");
+      expect(loc.search).to.eq("?preview=LoginCode&view=desktop");
     });
-    cy.findByTitle("loginCode preview")
+    cy.findByTitle("LoginCode preview")
       .should("not.have.class", "rm-max-w-[375px]")
       .should("not.have.class", "rm-max-h-[667px]");
   });

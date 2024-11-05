@@ -1,9 +1,7 @@
-"use client";
-
-import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 import { cn } from "../lib/utils.js";
 
 const Sheet = SheetPrimitive.Root;
@@ -19,7 +17,7 @@ const SheetOverlay = React.forwardRef<
   <SheetPrimitive.Overlay
     className={cn(
       "rm-fixed rm-inset-0 rm-z-50 rm-bg-black/80 rm- data-[state=open]:rm-animate-in data-[state=closed]:rm-animate-out data-[state=closed]:rm-fade-out-0 data-[state=open]:rm-fade-in-0",
-      className
+      className,
     )}
     {...props}
     ref={ref}
@@ -43,7 +41,7 @@ const sheetVariants = cva(
     defaultVariants: {
       side: "right",
     },
-  }
+  },
 );
 
 interface SheetContentProps
@@ -78,7 +76,7 @@ const SheetHeader = ({
   <div
     className={cn(
       "rm-flex rm-flex-col rm-space-y-2 rm-text-center sm:rm-text-left",
-      className
+      className,
     )}
     {...props}
   />
@@ -92,7 +90,7 @@ const SheetFooter = ({
   <div
     className={cn(
       "rm-flex rm-flex-col-reverse sm:rm-flex-row sm:rm-justify-end sm:rm-space-x-2",
-      className
+      className,
     )}
     {...props}
   />

@@ -1,7 +1,7 @@
 {
   "extends": "tsconfig/remix.json",
   "exclude": ["./cypress", "./cypress.config.ts"],
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx", "**/*.shiki"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

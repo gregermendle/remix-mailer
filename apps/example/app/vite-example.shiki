@@ -1,18 +1,31 @@
+tsx
+
+
 import { renderAsync } from "@react-email/components";
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
+
+// remix-mailer
 import { createPreviews } from "remix-mailer/server/create-previews";
+import { requireDev } from "remix-mailer/server/require-dev";
 import { emailsFromGlob } from "remix-mailer/server/emails-from-glob";
 import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
 
 import "remix-mailer/ui/index.css";
 
+// import emails using glob
 const emails = import.meta.glob("~/emails/*.tsx");
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const previews = await createPreviews(request, await emailsFromGlob(emails), {
-    render: (Component) =>
-      renderAsync(<Component {...Component.PreviewProps} />),
-  });
+  requireDev();
+
+  const previews = await createPreviews(
+    request,
+    // takes our glob import and turns it into an emails object
+    await emailsFromGlob(emails), 
+    {
+      render: (Component) =>
+        renderAsync(<Component {...Component.PreviewProps} />),
+    });
 
   return json({
     ...previews,

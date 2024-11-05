@@ -26,6 +26,4 @@ describe(createPreviews, () => {
       },
     });
   });
-
-  test("should consider interceptCache", () => {});
 });
