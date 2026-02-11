@@ -63,6 +63,21 @@ This is a pretty simple note-taking app, but it's a good example of how you can 
 
 ## Deployment
 
+### Cloudflare Pages
+
+The example app is configured to deploy to Cloudflare Pages. Ensure [wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/) is installed and authenticated (`wrangler login`).
+
+- **Deploy:** `npm run deploy` (builds then deploys to the project in `wrangler.toml`)
+- **Preview locally:** `npm run preview` (build then `wrangler pages dev`)
+
+If the Pages project does not exist yet, create it once:
+
+```sh
+npx wrangler pages project create remix-mailer-example --production-branch main
+```
+
+---
+
 This Remix Stack comes with two GitHub Actions that handle automatically deploying your app to production and staging environments.
 
 Prior to your first deployment, you'll need to do a few things:

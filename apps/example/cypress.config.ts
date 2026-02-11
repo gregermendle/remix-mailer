@@ -4,7 +4,7 @@ export default defineConfig({
   e2e: {
     setupNodeEvents: (on, config) => {
       const configOverrides: Partial<Cypress.PluginConfigOptions> = {
-        baseUrl: `http://localhost:3000`,
+        baseUrl: "http://localhost:8788",
         screenshotOnRunFailure: !process.env.CI,
       };
 
