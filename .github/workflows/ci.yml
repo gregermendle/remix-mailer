@@ -63,6 +63,10 @@ jobs:
         with:
           install-command: "npm ci --ignore-scripts"
 
+      - name: Install Cypress binary
+        run: npx cypress install
+        working-directory: apps/example
+
       - name: Build
         run: npm run build
 
