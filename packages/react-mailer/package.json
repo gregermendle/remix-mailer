@@ -1,0 +1,55 @@
+{
+  "name": "react-mailer",
+  "version": "0.0.1",
+  "sideEffects": ["**/*.css"],
+  "type": "module",
+  "scripts": {
+    "prepare": "npm run build",
+    "build:ts": "tsc --outDir ./build",
+    "build:css": "postcss ./src/ui/index.css -o ./build/ui/index.css",
+    "dev:css": "npm run build:css -- --watch",
+    "dev:ts": "npm run build:ts -- --watch",
+    "dev": "run-p dev:*",
+    "build": "run-s build:*",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint --ext .ts,.tsx src/"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./components/button": "./build/components/button.js",
+    "./components/logo": "./build/components/logo.js",
+    "./components/scroll-area": "./build/components/scroll-area.js",
+    "./components/sheet": "./build/components/sheet.js",
+    "./components/tabs": "./build/components/tabs.js",
+    "./lib/utils": "./build/lib/utils.js",
+    "./ui/preview-browser": "./build/ui/preview-browser.js",
+    "./ui/index.css": "./build/ui/index.css"
+  },
+  "keywords": ["react", "react-mailer", "email", "templating"],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "autoprefixer": "^10.4.20",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^11.0.0",
+    "postcss-plugin-namespace": "^0.0.3",
+    "tailwindcss": "^3.4.13",
+    "tsconfig": "*",
+    "typescript": "^5.2.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-scroll-area": "^1.2.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0"
+  }
+}
