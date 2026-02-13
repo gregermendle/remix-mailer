@@ -1,10 +1,10 @@
 import { renderAsync } from "@react-email/components";
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { createPreviews } from "remix-mailer/server/create-previews";
-import { emailsFromGlob } from "remix-mailer/server/emails-from-glob";
-import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
+import { createPreviews } from "@gregermendle/remix-mailer/server/create-previews";
+import { emailsFromGlob } from "@gregermendle/remix-mailer/server/emails-from-glob";
+import { PreviewBrowser } from "@gregermendle/remix-mailer/ui/preview-browser";
 
-import "remix-mailer/ui/index.css";
+import "@gregermendle/remix-mailer/ui/index.css";
 
 const emails = import.meta.glob("~/emails/*.tsx");
 

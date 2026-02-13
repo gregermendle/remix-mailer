@@ -3,7 +3,10 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "moduleResolution": "NodeNext",
-    "module": "NodeNext"
+    "module": "NodeNext",
+    "paths": {
+      "@gregermendle/react-mailer/*": ["../react-mailer/build/*"]
+    }
   },
   "include": [
     "src/ui/**/*.ts",

@@ -1,13 +1,11 @@
 {
-  "name": "next-mailer",
+  "name": "@gregermendle/next-mailer",
   "version": "0.0.1",
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "prepare": "npm run build",
     "build:ts": "tsc --outDir ./build",
-    "build:css": "mkdir -p build/ui && cp ../../node_modules/react-mailer/build/ui/index.css ./build/ui/index.css",
-    "dev:css": "npm run build:css -- --watch",
     "dev:ts": "npm run build:ts -- --watch",
     "dev": "run-p dev:*",
     "build": "run-s build:*",
@@ -25,7 +23,7 @@
     "./ui/preview-browser": "./build/ui/preview-browser.js",
     "./ui/use-previews": "./build/ui/use-previews.js",
     "./ui/preview-provider": "./build/ui/preview-provider.js",
-    "./ui/index.css": "./build/ui/index.css"
+    "./ui/index.css": "../react-mailer/build/ui/index.css"
   },
   "keywords": ["next", "next-mailer", "email", "templating"],
   "license": "MIT",
@@ -49,6 +47,6 @@
   "dependencies": {
     "next": "^15.0.0",
     "open": "^9.1.0",
-    "react-mailer": "*"
+    "@gregermendle/react-mailer": "*"
   }
 }

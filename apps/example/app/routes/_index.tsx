@@ -8,18 +8,18 @@ import { renderAsync } from "@react-email/components";
 import { type LoaderFunctionArgs, json } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
-import { createPreviews } from "remix-mailer/server/create-previews";
+import { createPreviews } from "@gregermendle/remix-mailer/server/create-previews";
 import { delay, fromEvent, mergeMap, tap } from "rxjs";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import LoginCode from "~/emails/login-code";
 import ResetPassword from "~/emails/reset-password";
-import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
+import { PreviewBrowser } from "@gregermendle/remix-mailer/ui/preview-browser";
 import exampleCode from "~/example.shiki";
 import viteExampleCode from "~/vite-example.shiki";
 
-import "remix-mailer/ui/index.css";
+import "@gregermendle/remix-mailer/ui/index.css";
 import { Logo } from "@/components/ui/logo";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

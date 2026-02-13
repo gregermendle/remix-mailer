@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
-import { PreviewBrowser as ReactMailerPreviewBrowser } from "react-mailer/ui/preview-browser";
+import { PreviewBrowser as ReactMailerPreviewBrowser } from "@gregermendle/react-mailer/ui/preview-browser";
 import { usePreviews } from "./use-previews.js";
 
 const PreviewBrowser = React.forwardRef<
@@ -49,4 +49,4 @@ export {
   PreviewBrowserNavItem,
   type PreviewBrowserNavProps,
   type PreviewBrowserNavItemProps,
-} from "react-mailer/ui/preview-browser";
+} from "@gregermendle/react-mailer/ui/preview-browser";

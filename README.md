@@ -16,7 +16,7 @@ This project is ESM-only and requires that you do a few extra steps during insta
 
 ```bash
 # Install the base remix-mailer package
-npm i remix-mailer
+npm i @gregermendle/remix-mailer
 ```
 
 Optionally install a transport and component library for creating and sending emails.
@@ -31,7 +31,7 @@ Add the following to `serverDependenciesToBundle` in `remix.config.js` if you ar
 
 ```js
 module.exports = {
-  serverDependenciesToBundle: [/^remix-mailer.*/],
+  serverDependenciesToBundle: [/^@gregermendle\/remix-mailer.*/],
 };
 ```
 
@@ -63,12 +63,12 @@ import { renderAsync } from "@react-email/components";
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 
 // remix-mailer
-import { createPreviews } from "remix-mailer/server/create-previews";
-import { requireDev } from "remix-mailer/server/require-dev";
-import { emailsFromGlob } from "remix-mailer/server/emails-from-glob";
-import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
+import { createPreviews } from "@gregermendle/remix-mailer/server/create-previews";
+import { requireDev } from "@gregermendle/remix-mailer/server/require-dev";
+import { emailsFromGlob } from "@gregermendle/remix-mailer/server/emails-from-glob";
+import { PreviewBrowser } from "@gregermendle/remix-mailer/ui/preview-browser";
 
-import "remix-mailer/ui/index.css";
+import "@gregermendle/remix-mailer/ui/index.css";
 
 // import emails using glob
 const emails = import.meta.glob("~/emails/*.tsx");
@@ -105,10 +105,10 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 
-import { createPreviews } from "remix-mailer/server/create-previews";
-import { requireDev } from "remix-mailer/server/require-dev";
-import remixMailerStylesheet from "remix-mailer/ui/index.css";
-import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
+import { createPreviews } from "@gregermendle/remix-mailer/server/create-previews";
+import { requireDev } from "@gregermendle/remix-mailer/server/require-dev";
+import remixMailerStylesheet from "@gregermendle/remix-mailer/ui/index.css";
+import { PreviewBrowser } from "@gregermendle/remix-mailer/ui/preview-browser";
 
 import { LoginCode } from "~/emails/login-code";
 import { ResetPassword } from "~/emails/reset-password";

@@ -22,8 +22,14 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
+    "@gregermendle/remix-mailer#build": {
+      "dependsOn": ["@gregermendle/react-mailer#build"]
+    },
+    "@gregermendle/next-mailer#build": {
+      "dependsOn": ["@gregermendle/react-mailer#build"]
+    },
     "example#dev": {
-      "dependsOn": ["remix-mailer#build"],
+      "dependsOn": ["@gregermendle/remix-mailer#build"],
       "cache": false
     }
   }

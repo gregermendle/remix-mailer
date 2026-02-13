@@ -64,10 +64,10 @@ import {
   type LoaderFunctionArgs,
 } from "@remix-run/node";
 
-import { createPreviews } from "remix-mailer/server/create-previews";
-import { requireDev } from "remix-mailer/server/require-dev";
-import remixMailerStylesheet from "remix-mailer/ui/index.css";
-import { PreviewBrowser } from "remix-mailer/ui/preview-browser";
+import { createPreviews } from "@gregermendle/remix-mailer/server/create-previews";
+import { requireDev } from "@gregermendle/remix-mailer/server/require-dev";
+import remixMailerStylesheet from "@gregermendle/remix-mailer/ui/index.css";
+import { PreviewBrowser } from "@gregermendle/remix-mailer/ui/preview-browser";
 
 import { LoginCode } from "~/emails/login-code";
 import { ResetPassword } from "~/emails/reset-password";

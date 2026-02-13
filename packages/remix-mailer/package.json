@@ -1,13 +1,11 @@
 {
-  "name": "remix-mailer",
+  "name": "@gregermendle/remix-mailer",
   "version": "0.0.5",
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "prepare": "npm run build",
     "build:ts": "tsc --outDir ./build",
-    "build:css": "mkdir -p build/ui && cp ../../node_modules/react-mailer/build/ui/index.css ./build/ui/index.css",
-    "dev:css": "npm run build:css -- --watch",
     "dev:ts": "npm run build:ts -- --watch",
     "dev": "run-p dev:*",
     "build": "run-s build:*",
@@ -24,7 +22,7 @@
     "./server/emails-from-glob": "./build/server/emails-from-glob.js",
     "./ui/preview-browser": "./build/ui/preview-browser.js",
     "./ui/use-previews": "./build/ui/use-previews.js",
-    "./ui/index.css": "./build/ui/index.css"
+    "./ui/index.css": "../react-mailer/build/ui/index.css"
   },
   "keywords": [
     "remix",
@@ -58,6 +56,6 @@
   },
   "dependencies": {
     "open": "^9.1.0",
-    "react-mailer": "*"
+    "@gregermendle/react-mailer": "*"
   }
 }

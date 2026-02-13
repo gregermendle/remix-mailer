@@ -7,7 +7,7 @@
     "module": "ESNext",
     "paths": {
       "next/*": ["../../node_modules/next/*"],
-      "react-mailer/*": ["../react-mailer/build/*"]
+      "@gregermendle/react-mailer/*": ["../react-mailer/build/*"]
     }
   },
   "include": [
