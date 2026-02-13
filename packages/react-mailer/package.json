@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "sideEffects": ["**/*.css"],
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prepare": "npm run build",
     "build:ts": "tsc --outDir ./build",
