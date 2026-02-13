@@ -1,0 +1,54 @@
+{
+  "name": "next-mailer",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "prepare": "npm run build",
+    "build:ts": "tsc --outDir ./build",
+    "build:css": "mkdir -p build/ui && cp ../../node_modules/react-mailer/build/ui/index.css ./build/ui/index.css",
+    "dev:css": "npm run build:css -- --watch",
+    "dev:ts": "npm run build:ts -- --watch",
+    "dev": "run-p dev:*",
+    "build": "run-s build:*",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint --ext .ts,.tsx src/",
+    "test": "vitest run",
+    "coverage": "npm run test -- --coverage"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./server/intercept": "./build/server/intercept.js",
+    "./server/create-previews": "./build/server/create-previews.js",
+    "./server/require-dev": "./build/server/require-dev.js",
+    "./server/emails-from-glob": "./build/server/emails-from-glob.js",
+    "./ui/preview-browser": "./build/ui/preview-browser.js",
+    "./ui/use-previews": "./build/ui/use-previews.js",
+    "./ui/preview-provider": "./build/ui/preview-provider.js",
+    "./ui/index.css": "./build/ui/index.css"
+  },
+  "keywords": ["next", "next-mailer", "email", "templating"],
+  "license": "MIT",
+  "peerDependencies": {
+    "next": "^14.0.0 || ^15.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.0",
+    "next": "^15.0.0",
+    "@types/react": "^18.2.37",
+    "npm-run-all": "^4.1.5",
+    "tsconfig": "*",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "open": "^9.1.0",
+    "react-mailer": "*"
+  }
+}
