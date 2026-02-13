@@ -1,5 +1,7 @@
 # Remix Mailer
 
+> **NOTE:** The remix-mailer npm package has been deprecated in favor of @gregermendle/remix-mailer.
+
 A way to preview and intercept emails in Remix with minimal setup.
 
 [Example](https://remix-mailer.gregermendle.com/email)
